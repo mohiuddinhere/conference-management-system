@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\AuthenticationAuthorizationController;
+use App\Http\Controllers\UniversityAdministrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,5 +20,14 @@ use App\Http\Controllers\AdminController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
+//Admin
 Route::get('conference-arrangement-requests',[AdminController::class, 'conferenceArrangementRequests']);
+
+//Author
+Route::get('author-paper-submission', [AuthorController::class, 'authorPaperSubmission']);
+
+//Authentication and Authorization
+Route::get('create-account-via-link', [AuthenticationAuthorizationController::class, 'createAccountViaLink']);
+
+//University Administrator 
+Route::get('create-conference-paper', [UniversityAdministrationController::class, 'createConferencePaper']);
