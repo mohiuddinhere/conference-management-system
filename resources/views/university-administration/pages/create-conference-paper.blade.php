@@ -266,7 +266,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Track</label>
-                    
+                    <input type="text" data-role="tagsinput" class="form-control">
                 </div>
                 <div class="form-group mb-5">
                     <button class="btn btn-info mt-2">Submit</button>

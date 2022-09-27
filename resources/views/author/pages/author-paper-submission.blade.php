@@ -277,6 +277,10 @@
                     <textarea class="form-control" rows="5" id="comment" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
+                    <label for="">Tags</label>
+                    <input type="text" data-role="tagsinput" class="form-control">
+                </div>
+                <div class="form-group">
                     <label for="">Upload File</label><br>
                     <input type="file" id="myFile" name="filename">
                 </div>
