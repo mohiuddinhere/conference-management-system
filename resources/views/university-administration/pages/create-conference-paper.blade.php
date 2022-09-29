@@ -260,13 +260,22 @@
             <h3 class="mb-4 text-center font-weight-bold">Create Conference paper</h3>
             <form action="">
                 @csrf
-                <div class="form-group">
+                <div class="form-group col-md-4 ml-0 pl-0">
                     <label for="">Title</label>
                     <input type="text" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="">Track</label>
-                    <input type="text" data-role="tagsinput" class="form-control">
+                <label for="">Track</label>
+                    <div id="show_item">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <input type="text" name="track_name[]" class="form-control" placeholder="track name">
+                            </div>
+                            <div class="col-md-2 mb-3 d-grid ">
+                                <button class="btn btn-success add_item_button"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </div> 
                 </div>
                 <div class="form-group mb-5">
                     <button class="btn btn-info mt-2">Submit</button>
@@ -316,6 +325,32 @@
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
     <script src="assets/js/init/fullcalendar-init.js"></script>
+
+    <!-- scripts for multiple input field  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/46f536c64d.js" crossorigin="anonymous"></script>
+
+    <!-- multiple input field generation -->
+    <script>
+        $(document).ready(function(){
+            $(".add_item_button").click(function(e){
+                e.preventDefault();
+                $("#show_item").prepend(`<div class="row">
+                            <div class="col-md-4 mb-3">
+                                <input type="text" name="track_name[]" class="form-control" placeholder="track name">
+                            </div>
+                            <div class="col-md-2 mb-3 d-grid">
+                                <button class="btn btn-danger remove_item_button"><i class="fa-solid fa-trash-can"></i></button>
+                            </div>
+                        </div>`)
+            });
+            $(document).on('click', '.remove_item_button', function(e){
+                e.preventDefault();
+                let row_item = $(this).parent().parent();
+                $(row_item).remove();
+            })
+        });
+    </script>
 
     <!--Local Stuff-->
     <script>
