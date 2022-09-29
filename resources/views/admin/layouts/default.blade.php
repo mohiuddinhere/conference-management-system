@@ -24,15 +24,7 @@
                         </div>
                     </div>
                     <div class="col-sm-8">
-                        <div class="page-header float-right">
-                            <div class="page-title">
-                                <ol class="breadcrumb text-right">
-                                    <li><a href="#">Dashboard</a></li>
-                                    <li><a href="#">Table</a></li>
-                                    <li class="active">Data table</li>
-                                </ol>
-                            </div>
-                        </div>
+                        <h2 class="text-left">Conference Arrangement Request</h2>
                     </div>
                 </div>
             </div>

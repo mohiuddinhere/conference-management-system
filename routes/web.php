@@ -28,6 +28,7 @@ Route::get('author-paper-submission', [AuthorController::class, 'authorPaperSubm
 
 //Authentication and Authorization
 Route::get('register/{user}', [AuthenticationAuthorizationController::class, 'createAccount']);
+Route::post('register/admin', [AuthenticationAuthorizationController::class, 'addUser']);
 
 //University Administrator 
 Route::get('create-conference-paper', [UniversityAdministrationController::class, 'createConferencePaper']);

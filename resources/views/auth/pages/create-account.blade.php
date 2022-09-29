@@ -35,22 +35,23 @@
                     <img class="align-content" src="{{ asset('images/logo.png') }}" alt="">
                 </div>
                 <div class="login-form">
-                    <form>
+                    <form method="POST" action="{{ url('register/'.$user) }}">
+                        @csrf
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" class="form-control" placeholder="Name">
+                            <input type="text" name="name" class="form-control" placeholder="Name">
                         </div>
                         <div class="form-group">
                             <label>Email address</label>
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input type="email" name="email" class="form-control" placeholder="Email">
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" class="form-control" placeholder="Password">
+                            <input type="password" name="password" class="form-control" placeholder="Password">
                         </div>
                         <div class="form-group">
                             <label>Confirm Password</label>
-                            <input type="password" class="form-control" placeholder="Password">
+                            <input type="password" name="confirmPassword" class="form-control" placeholder="Password">
                         </div>
                         <div class="checkbox">
                             <label>
