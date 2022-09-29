@@ -27,7 +27,8 @@ Route::get('conference-arrangement-requests',[AdminController::class, 'conferenc
 Route::get('author-paper-submission', [AuthorController::class, 'authorPaperSubmission']);
 
 //Authentication and Authorization
-Route::get('create-account-via-link', [AuthenticationAuthorizationController::class, 'createAccountViaLink']);
+Route::get('register/{user}', [AuthenticationAuthorizationController::class, 'createAccount']);
 
 //University Administrator 
 Route::get('create-conference-paper', [UniversityAdministrationController::class, 'createConferencePaper']);
+Route::get('dashboard/{user}', [UniversityAdministrationController::class, 'showDashboard']);
