@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class AuthenticationAuthorizationController extends Controller
 {
-    public function createAccountViaLink(){
-        return view('auth.pages.create-account-via-link');
+    public function createAccount($user){
+        return view('auth.pages.create-account');
     }
 }

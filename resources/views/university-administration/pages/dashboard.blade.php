@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Conference Paper</title>
+    <title>Dashboard</title>
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -24,46 +24,6 @@
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
     <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
-
-    <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
-
-   <style>
-    #weatherWidget .currentDesc {
-        color: #ffffff!important;
-    }
-        .traffic-chart {
-            min-height: 335px;
-        }
-        #flotPie1  {
-            height: 150px;
-        }
-        #flotPie1 td {
-            padding:3px;
-        }
-        #flotPie1 table {
-            top: 20px!important;
-            right: -10px!important;
-        }
-        .chart-container {
-            display: table;
-            min-width: 270px ;
-            text-align: left;
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-        #flotLine5  {
-             height: 105px;
-        }
-
-        #flotBarChart {
-            height: 150px;
-        }
-        #cellPaiChart{
-            height: 160px;
-        }
-
-    </style>
 </head>
 
 <body>
@@ -128,38 +88,8 @@
         <!-- /#header -->
         <!-- Content -->
         <div class="container pt-4">
-            <h2 class="mb-4 text-center font-weight-bold">Create Conference paper</h2>
-            <form action="">
-                @csrf
-                <div class="form-group col-md-4 ml-0 pl-0">
-                    <label for="">Title</label>
-                    <input type="text" class="form-control" placeholder="Enter Title">
-                </div>
-                <div class="form-group">
-                    <label for="">Paper Submission Deadline</label>
-                    <input type="date" class="col-md-4 form-control">
-                </div>
-                <div class="form-group">
-                    <label for="">Conference Date</label>
-                    <input type="date" class="col-md-4 form-control">
-                </div>
-                <div class="form-group">
-                <label for="">Track</label>
-                    <div id="show_item">
-                        <div class="row">
-                            <div class="col-md-4 mb-3">
-                                <input type="text" name="track_name[]" class="form-control" placeholder="Track Name">
-                            </div>
-                            <div class="col-md-2 mb-3 d-grid ">
-                                <button class="btn btn-success add_item_button"><i class="fa-solid fa-plus"></i></button>
-                            </div>
-                        </div>
-                    </div> 
-                </div>
-                <div class="form-group mb-5">
-                    <button class="btn btn-info mt-2">Submit</button>
-                </div>
-            </form>
+            <h2 class="mb-4 text-center font-weight-bold">Dashboard</h2>
+          
         </div>
         <!-- /.content -->
         <div class="clearfix"></div>
@@ -188,29 +118,7 @@
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
     <!-- scripts for multiple input field  -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/46f536c64d.js" crossorigin="anonymous"></script>
 
-    <!-- multiple input field generation -->
-    <script>
-        $(document).ready(function(){
-            $(".add_item_button").click(function(e){
-                e.preventDefault();
-                $("#show_item").prepend(`<div class="row">
-                            <div class="col-md-4 mb-3">
-                                <input type="text" name="track_name[]" class="form-control" placeholder="Track Name">
-                            </div>
-                            <div class="col-md-2 mb-3 d-grid">
-                                <button class="btn btn-danger remove_item_button"><i class="fa-solid fa-trash-can"></i></button>
-                            </div>
-                        </div>`)
-            });
-            $(document).on('click', '.remove_item_button', function(e){
-                e.preventDefault();
-                let row_item = $(this).parent().parent();
-                $(row_item).remove();
-            })
-        });
-    </script>
 </body>
 </html>
