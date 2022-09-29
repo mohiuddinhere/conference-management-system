@@ -32,3 +32,4 @@ Route::get('register/{user}', [AuthenticationAuthorizationController::class, 'cr
 //University Administrator 
 Route::get('create-conference-paper', [UniversityAdministrationController::class, 'createConferencePaper']);
 Route::get('dashboard/{user}', [UniversityAdministrationController::class, 'showDashboard']);
+Route::get('conference-list',[UniversityAdministrationController::class, 'conferenceList']);

@@ -37,7 +37,7 @@
                     </li>
                     <li class="menu-title">Create</li><!-- /.menu-title -->
                     <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Create User</a>
+                        <a href="{{ url('register/{user}') }}"> <i class="menu-icon fa fa-cogs"></i>Create Admin</a>
                     </li>
                     <li>
                         <a href="{{ url('create-conference-paper') }}"> <i class="menu-icon fa fa-table"></i>Create Conference</a>
@@ -46,7 +46,7 @@
                     <li class="menu-title">Tables</li><!-- /.menu-title -->
 
                     <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Conference list</a>
+                        <a href="{{ url('conference-list') }}"> <i class="menu-icon fa fa-tasks"></i>Conference list</a>
                     </li>
                     <li>
                         <a href="widgets.html"> <i class="menu-icon fa-solid fa-user-tie"></i>Admin list </a>
@@ -88,8 +88,30 @@
         <!-- /#header -->
         <!-- Content -->
         <div class="container pt-4">
-            <h2 class="mb-4 text-center font-weight-bold">Dashboard</h2>
-          
+            <h2 class="mb-4 text-center font-weight-bold mb-4 pb-4">Dashboard</h2>
+
+            <div class="row d-flex justify-content-center">
+                <div class="card bg-dark mr-4" style="width: 18rem;">
+                    <div class="card-body text-center text-white">
+                        <h4 class="card-title"><b>Admins</b></h4>
+                        <h6 class="card-subtitle mb-2">Card subtitle</h6>
+                    </div>
+                </div>
+
+                <div class="card bg-dark mr-4" style="width: 18rem;">
+                    <div class="card-body text-center text-white">
+                        <h4 class="card-title"><b>Submissions</b></h4>
+                        <h6 class="card-subtitle mb-2">Card subtitle</h6>
+                    </div>
+                </div>
+
+                <div class="card bg-dark mr-4" style="width: 18rem;">
+                    <div class="card-body text-center text-white">
+                        <h4 class="card-title"><b>Conferences</b></h4>
+                        <h6 class="card-subtitle mb-2">Card subtitle</h6>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- /.content -->
         <div class="clearfix"></div>
