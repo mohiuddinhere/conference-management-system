@@ -13,4 +13,8 @@ class UniversityAdministrationController extends Controller
     public function showDashboard($user){
         return view('university-administration.pages.dashboard');
     }
+
+    public function conferenceList(){
+        return view('university-administration.pages.conference-list');
+    }
 }
