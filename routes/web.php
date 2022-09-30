@@ -34,3 +34,5 @@ Route::get('create-conference-paper', [UniversityAdministrationController::class
 Route::get('dashboard/{user}', [UniversityAdministrationController::class, 'showDashboard']);
 Route::get('conference-list',[UniversityAdministrationController::class, 'conferenceList']);
 Route::post('store-conference', [UniversityAdministrationController::class, 'storeConference']);
+Route::get('edit-conference/{id}', [UniversityAdministrationController::class, 'editConference']);
+Route::post('update-conference/{id}', [UniversityAdministrationController::class, 'updateConference']);
