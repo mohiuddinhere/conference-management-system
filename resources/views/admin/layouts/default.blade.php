@@ -24,22 +24,14 @@
                         </div>
                     </div>
                     <div class="col-sm-8">
-                        <div class="page-header float-right">
-                            <div class="page-title">
-                                <ol class="breadcrumb text-right">
-                                    <li><a href="#">Dashboard</a></li>
-                                    <li><a href="#">Table</a></li>
-                                    <li class="active">Data table</li>
-                                </ol>
-                            </div>
-                        </div>
+                        <h2 class="text-left">University Admin Register</h2>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="content">
-            @yield('conference-arrangement-request')
+            @yield('university-admin-request')
         </div><!-- .content -->
 
 

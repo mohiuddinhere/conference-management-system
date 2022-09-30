@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Register Via link</title>
+    <title>Univarsity Admin Register</title>
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -35,11 +35,19 @@
                     <img class="align-content" src="{{ asset('images/logo.png') }}" alt="">
                 </div>
                 <div class="login-form">
-                    <form method="POST" action="{{ url('register/'.$user) }}">
+                    <form method="POST" action="{{ url('admin/register/uni-admin/add') }}">
                         @csrf
                         <div class="form-group">
                             <label>Name</label>
                             <input type="text" name="name" class="form-control" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Institution</label>
+                            <input type="text" name="univarsity_name" class="form-control" placeholder="Univarsity">
+                        </div>
+                        <div class="form-group">
+                            <label>Institution Address</label>
+                            <textarea type="text" name="address" class="form-control" placeholder="Address" rows="2"></textarea>
                         </div>
                         <div class="form-group">
                             <label>Email address</label>

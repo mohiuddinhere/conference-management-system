@@ -33,11 +33,11 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="{{ url('dashboard/{user}') }}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                        <a href="{{ url('dashboard/admin') }}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                     </li>
                     <li class="menu-title">Create</li><!-- /.menu-title -->
                     <li>
-                        <a href="{{ url('register/{user}') }}"> <i class="menu-icon fa fa-cogs"></i>Create Admin</a>
+                        <a href="{{ url('register/admin') }}"> <i class="menu-icon fa fa-cogs"></i>Create Admin</a>
                     </li>
                     <li>
                         <a href="{{ url('create-conference-paper') }}"> <i class="menu-icon fa fa-table"></i>Create Conference</a>

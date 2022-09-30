@@ -21,13 +21,18 @@ use App\Http\Controllers\UniversityAdministrationController;
 //     return view('welcome');
 // });
 //Admin
-Route::get('conference-arrangement-requests',[AdminController::class, 'conferenceArrangementRequests']);
+Route::get('admin/dashbord',[AdminController::class, 'adminDashbord']);
+Route::get('admin/register/uni-admin', [AdminController::class, 'universityAdminRegister']);
+Route::post('admin/register/uni-admin/add', [AdminController::class, 'universityAdminAdd']);
 
 //Author
 Route::get('author-paper-submission', [AuthorController::class, 'authorPaperSubmission']);
 
+
 //Authentication and Authorization
 Route::get('register/{user}', [AuthenticationAuthorizationController::class, 'createAccount']);
+Route::post('register/admin', [AuthenticationAuthorizationController::class, 'addUser']);
+
 
 //University Administrator 
 Route::get('create-conference-paper', [UniversityAdministrationController::class, 'createConferencePaper']);

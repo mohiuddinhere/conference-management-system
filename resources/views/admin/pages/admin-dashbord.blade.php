@@ -1,17 +1,14 @@
 @extends('admin.layouts.default')
 
 
-@section('title', 'Conference Arrangement Request List')
+@section('title', 'University Admin Register')
 
-@section('conference-arrangement-request')
+@section('university-admin-request')
 <div class="animated fadeIn">
     <div class="row">
 
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
-                    <strong class="card-title">Conference Arrangement Request</strong>
-                </div>
                 <div class="card-body">
                     <table id="bootstrap-data-table" class="table table-striped table-bordered">
                         <thead>
