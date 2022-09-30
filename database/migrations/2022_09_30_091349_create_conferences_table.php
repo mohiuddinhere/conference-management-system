@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('submission_deadline');
             $table->string('conference_date');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
         });
     }
 

@@ -1,9 +1,9 @@
 @extends('admin.layouts.default')
 
 
-@section('title', 'Conference Arrangement Request List')
+@section('title', 'University Admin Register')
 
-@section('conference-arrangement-request')
+@section('university-admin-request')
 <div class="animated fadeIn">
     <div class="row">
 

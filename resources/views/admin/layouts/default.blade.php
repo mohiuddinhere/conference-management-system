@@ -24,14 +24,14 @@
                         </div>
                     </div>
                     <div class="col-sm-8">
-                        <h2 class="text-left">Conference Arrangement Request</h2>
+                        <h2 class="text-left">University Admin Register</h2>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="content">
-            @yield('conference-arrangement-request')
+            @yield('university-admin-request')
         </div><!-- .content -->
 
 
