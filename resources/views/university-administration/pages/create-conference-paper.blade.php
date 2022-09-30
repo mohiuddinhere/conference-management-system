@@ -128,20 +128,25 @@
         <!-- /#header -->
         <!-- Content -->
         <div class="container pt-4">
-            <h2 class="mb-4 text-center font-weight-bold">Create Conference paper</h2>
-            <form action="">
+            <h2 class="mb-4 text-center font-weight-bold">Create Conference</h2>
+            @if(Session::has('success'))
+                <div class="alert alert-success">
+                    {{ Session::get('success') }}
+                </div>
+            @endif
+            <form action="{{ url('store-conference') }}" method="post">
                 @csrf
                 <div class="form-group col-md-4 ml-0 pl-0">
                     <label for="">Title</label>
-                    <input type="text" class="form-control" placeholder="Enter Title">
+                    <input type="text" class="form-control" name="title" placeholder="Enter Title">
                 </div>
                 <div class="form-group">
                     <label for="">Paper Submission Deadline</label>
-                    <input type="date" class="col-md-4 form-control">
+                    <input type="date" name="submissionDeadline" class="col-md-4 form-control">
                 </div>
                 <div class="form-group">
                     <label for="">Conference Date</label>
-                    <input type="date" class="col-md-4 form-control">
+                    <input type="date" name="conferenceDate" class="col-md-4 form-control">
                 </div>
                 <div class="form-group">
                 <label for="">Track</label>
@@ -157,7 +162,7 @@
                     </div> 
                 </div>
                 <div class="form-group mb-5">
-                    <button class="btn btn-info mt-2">Submit</button>
+                    <button class="btn btn-info mt-2" type="submit">Submit</button>
                 </div>
             </form>
         </div>
