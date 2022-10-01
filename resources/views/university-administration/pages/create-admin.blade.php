@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Conference Paper</title>
+    <title>Register Admin</title>
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -24,46 +24,6 @@
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
     <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
-
-    <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
-
-   <style>
-    #weatherWidget .currentDesc {
-        color: #ffffff!important;
-    }
-        .traffic-chart {
-            min-height: 335px;
-        }
-        #flotPie1  {
-            height: 150px;
-        }
-        #flotPie1 td {
-            padding:3px;
-        }
-        #flotPie1 table {
-            top: 20px!important;
-            right: -10px!important;
-        }
-        .chart-container {
-            display: table;
-            min-width: 270px ;
-            text-align: left;
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-        #flotLine5  {
-             height: 105px;
-        }
-
-        #flotBarChart {
-            height: 150px;
-        }
-        #cellPaiChart{
-            height: 160px;
-        }
-
-    </style>
 </head>
 
 <body>
@@ -127,45 +87,38 @@
         </header>
         <!-- /#header -->
         <!-- Content -->
-        <div class="container pt-4">
-            <h2 class="mb-4 text-center font-weight-bold">Create Conference</h2>
+        <div class="container">
+            <h1 class="text-center mt-4 pt-4 mb-4"><b>Register New Admin</b></h1>
             @if(Session::has('success'))
                 <div class="alert alert-success">
                     {{ Session::get('success') }}
                 </div>
             @endif
-            <form action="{{ url('store-conference') }}" method="post">
-                @csrf
-                <div class="form-group col-md-4 ml-0 pl-0">
-                    <label for="">Title</label>
-                    <input type="text" class="form-control" name="title" placeholder="Enter Title">
-                </div>
-                <div class="form-group">
-                    <label for="">Paper Submission Deadline</label>
-                    <input type="date" name="submissionDeadline" class="col-md-4 form-control">
-                </div>
-                <div class="form-group">
-                    <label for="">Conference Date</label>
-                    <input type="date" name="conferenceDate" class="col-md-4 form-control">
-                </div>
-                <div class="form-group">
-                <label for="">Track</label>
-                    <div id="show_item">
-                        <div class="row">
-                            <div class="col-md-4 mb-3">
-                                <input type="text" name="track_name[]" class="form-control" placeholder="Track Name">
-                            </div>
-                            <div class="col-md-2 mb-3 d-grid ">
-                                <button class="btn btn-success add_item_button"><i class="fa-solid fa-plus"></i></button>
-                            </div>
-                        </div>
-                    </div> 
-                </div>
-                <div class="form-group mb-5">
-                    <button class="btn btn-info mt-2" type="submit">Submit</button>
-                </div>
-            </form>
+            <div class="login-form">
+                <form method="POST" action="{{ url('store-admin') }}">
+                    @csrf
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="name" class="form-control" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Email address</label>
+                        <input type="email" name="email" class="form-control" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" name="confirmPassword" class="form-control" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-info col-sm-2">Register</button>
+                </form>
+            </div>
+            <br>
         </div>
+        
         <!-- /.content -->
         <div class="clearfix"></div>
         <!-- Footer -->
@@ -193,29 +146,7 @@
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
     <!-- scripts for multiple input field  -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/46f536c64d.js" crossorigin="anonymous"></script>
 
-    <!-- multiple input field generation -->
-    <script>
-        $(document).ready(function(){
-            $(".add_item_button").click(function(e){
-                e.preventDefault();
-                $("#show_item").prepend(`<div class="row">
-                            <div class="col-md-4 mb-3">
-                                <input type="text" name="track_name[]" class="form-control" placeholder="Track Name">
-                            </div>
-                            <div class="col-md-2 mb-3 d-grid">
-                                <button class="btn btn-danger remove_item_button"><i class="fa-solid fa-trash-can"></i></button>
-                            </div>
-                        </div>`)
-            });
-            $(document).on('click', '.remove_item_button', function(e){
-                e.preventDefault();
-                let row_item = $(this).parent().parent();
-                $(row_item).remove();
-            })
-        });
-    </script>
 </body>
 </html>
