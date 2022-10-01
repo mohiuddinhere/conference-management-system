@@ -38,9 +38,15 @@ Route::post('register/admin', [AuthenticationAuthorizationController::class, 'ad
 
 
 //University Administrator 
-Route::get('create-conference-paper', [UniversityAdministrationController::class, 'createConferencePaper']);
-Route::get('dashboard/{user}', [UniversityAdministrationController::class, 'showDashboard']);
-Route::get('conference-list',[UniversityAdministrationController::class, 'conferenceList']);
+Route::get('uni-admin/create-conference-paper', [UniversityAdministrationController::class, 'createConferencePaper']);
+Route::get('uni-admin/dashboard/{user}', [UniversityAdministrationController::class, 'showDashboard']);
+Route::get('uni-admin/conference-list',[UniversityAdministrationController::class, 'conferenceList']);
 Route::post('store-conference', [UniversityAdministrationController::class, 'storeConference']);
-Route::get('edit-conference/{id}', [UniversityAdministrationController::class, 'editConference']);
+Route::get('uni-admin/edit-conference/{id}', [UniversityAdministrationController::class, 'editConference']);
 Route::post('update-conference/{id}', [UniversityAdministrationController::class, 'updateConference']);
+Route::get('uni-admin/create-admin', [UniversityAdministrationController::class, 'createAdmin']);
+Route::post('store-admin', [UniversityAdministrationController::class, 'storeAdmin']);
+Route::get('uni-admin/admin-list', [UniversityAdministrationController::class, 'adminList']);
+Route::get('uni-admin/edit-admin-acc/{id}', [UniversityAdministrationController::class, 'editAdmin']);
+Route::post('update-admin/{id}', [UniversityAdministrationController::class, 'updateAdmin']);
+Route::get('uni-admin/delete-admin-acc/{id}', [UniversityAdministrationController::class, 'deleteAdmin']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Conference;
 use App\Models\Track;
+use App\Models\Users;
 
 class UniversityAdministrationController extends Controller
 {
@@ -83,5 +84,62 @@ class UniversityAdministrationController extends Controller
         $conferences = $conf->all();
 
         return view('university-administration.pages.conference-list', compact('conferences'));
+    }
+
+    public function createAdmin(){
+        return view('university-administration.pages.create-admin');
+    }
+
+    public function storeAdmin(Request $r){
+        $name = $r->name;
+        $email = $r->email;
+        $password = $r->password;
+        $confirmPassword = $r->confirmPassword;
+
+        if($password == $confirmPassword){
+            $obj = new Users();
+            $obj->name = $name;
+            $obj->email = $email;
+            $obj->password = md5($password);
+
+            if($obj->save()){
+                return redirect()->back()->with('success', 'Registered Successfully');
+            }
+        }   
+    }
+
+    public function adminList(){
+        $data = Users::all();
+
+        return view('university-administration.pages.admin-list', compact('data'));
+    }
+
+    public function editAdmin($id){
+        $obj = new Users();
+        $admins = $obj->find($id)->first();
+
+        return view('university-administration.pages.edit-admin', compact('admins'));
+    }
+
+    public function updateAdmin(Request $r, $id){
+        $password = $r->password;
+        $confirmPass = $r->confirmPassword;
+
+        if($password == $confirmPass){
+            $admin = Users::find($id);
+            $admin->name = $r->name;
+            $admin->email = $r->email;
+            $admin->password = $password;
+
+            if($admin->save()){
+                return redirect('admin-list');
+            }
+        }  
+    }
+
+    public function deleteAdmin($id){
+        $admin = Users::find($id)->delete();
+
+        return redirect('admin-list');
     }
 }
