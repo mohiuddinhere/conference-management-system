@@ -31,6 +31,8 @@ Route::get('author-paper-submission', [AuthorController::class, 'authorPaperSubm
 
 
 //Authentication and Authorization
+Route::get('login', [AuthenticationAuthorizationController::class, 'loginView']);
+Route::post('login', [AuthenticationAuthorizationController::class, 'login']);
 Route::get('register/{user}', [AuthenticationAuthorizationController::class, 'createAccount']);
 Route::post('register/admin', [AuthenticationAuthorizationController::class, 'addUser']);
 

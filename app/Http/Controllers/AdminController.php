@@ -42,14 +42,14 @@ class AdminController extends Controller
         $universityAddress = $request->address;
 
         if ($pass == $confirmPass) {
-            DB::table('all_users')->insert([
+            DB::table('users')->insert([
                 'name' => $name,
                 'email' => $email,
                 'password' => hash('sha1', $pass),
                 'role' => 'uni_admin'
             ]);
 
-            $data = DB::table('all_users')->where('email', '=', $email)->select('id')->first();
+            $data = DB::table('users')->where('email', '=', $email)->select('id')->first();
 
             DB::table('universities')->insert([
                 'user_id' => $data->id,
@@ -62,7 +62,7 @@ class AdminController extends Controller
     //Register End
 
     public function universityAdminTableView(){
-        $data = DB::table('all_users')->where('role', '=', 'uni_admin')->get();
+        $data = DB::table('users')->where('role', '=', 'uni_admin')->get();
         // dd($data);
         return view('admin.pages.admin-table', ['data' => $data]);
     }
