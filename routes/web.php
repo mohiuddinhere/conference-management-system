@@ -24,6 +24,7 @@ use App\Http\Controllers\UniversityAdministrationController;
 Route::get('admin/dashbord',[AdminController::class, 'adminDashbord']);
 Route::get('admin/register/uni-admin', [AdminController::class, 'universityAdminRegister']);
 Route::post('admin/register/uni-admin/add', [AdminController::class, 'universityAdminAdd']);
+Route::get('admin/tables/uni-admin', [AdminController::class, 'universityAdminTableView']);
 
 //Author
 Route::get('author-paper-submission', [AuthorController::class, 'authorPaperSubmission']);

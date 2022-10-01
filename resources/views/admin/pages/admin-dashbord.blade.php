@@ -3,7 +3,7 @@
 
 @section('title', 'University Admin Register')
 
-@section('university-admin-request')
+@section('bodys')
 <div class="animated fadeIn">
     <div class="row">
 

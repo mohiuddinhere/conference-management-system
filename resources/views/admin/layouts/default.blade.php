@@ -28,7 +28,7 @@
         </div>
 
         <div class="content">
-            @yield('university-admin-request')
+            @yield('bodys')
         </div><!-- .content -->
 
 

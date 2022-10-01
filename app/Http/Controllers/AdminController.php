@@ -25,6 +25,7 @@ class AdminController extends Controller
         );
     }
 
+    //Register
     public function universityAdminRegister()
     {
         return view('admin.pages.university-admin-register');
@@ -32,7 +33,6 @@ class AdminController extends Controller
 
     public function universityAdminAdd(Request $request)
     {
-        // dd($request);
         $name = $request->name;
         $email = $request->email;
         $pass = $request->password;
@@ -42,18 +42,28 @@ class AdminController extends Controller
         $universityAddress = $request->address;
 
         if ($pass == $confirmPass) {
-            $id = DB::table('all_users')->insert([
+            DB::table('all_users')->insert([
                 'name' => $name,
                 'email' => $email,
                 'password' => hash('sha1', $pass),
                 'role' => 'uni_admin'
             ]);
 
+            $data = DB::table('all_users')->where('email', '=', $email)->select('id')->first();
+
             DB::table('universities')->insert([
-                'user_id' => $id,
+                'user_id' => $data->id,
                 'name' => $universityName,
                 'address' => $universityAddress
             ]);
         }
+        return redirect('admin/tables/uni-admin');
+    }
+    //Register End
+
+    public function universityAdminTableView(){
+        $data = DB::table('all_users')->where('role', '=', 'uni_admin')->get();
+        // dd($data);
+        return view('admin.pages.admin-table', ['data' => $data]);
     }
 }
