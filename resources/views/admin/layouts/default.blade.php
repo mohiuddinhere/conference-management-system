@@ -16,15 +16,12 @@
         <div class="breadcrumbs">
             <div class="breadcrumbs-inner">
                 <div class="row m-0">
-                    <div class="col-sm-4">
+                    <div class="col-sm-12">
                         <div class="page-header float-left">
                             <div class="page-title">
-                                <h1>Dashboard</h1>
+                                <h1><b>Dashboard</b> (Admin)</h1>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-8">
-                        <h2 class="text-left">University Admin Register</h2>
                     </div>
                 </div>
             </div>

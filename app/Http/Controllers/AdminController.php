@@ -6,17 +6,32 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class AdminController extends Controller{
-    
-    public function adminDashbord(){
-        return view('admin.pages.admin-dashbord');
+class AdminController extends Controller
+{
+
+    public function adminDashbord()
+    {
+        $totalUser = DB::table('all_users')->count();
+        $totalConference = DB::table('conferences')->count();
+        $totalUniversities = DB::table('universities')->count();
+
+        return view(
+            'admin.pages.admin-dashbord',
+            [
+                'total_user' => $totalUser,
+                'total_conference' => $totalConference,
+                'total_universities' => $totalUniversities
+            ]
+        );
     }
 
-    public function universityAdminRegister(){
+    public function universityAdminRegister()
+    {
         return view('admin.pages.university-admin-register');
     }
 
-    public function universityAdminAdd(Request $request){
+    public function universityAdminAdd(Request $request)
+    {
         // dd($request);
         $name = $request->name;
         $email = $request->email;
@@ -26,11 +41,11 @@ class AdminController extends Controller{
         $universityName = $request->univarsity_name;
         $universityAddress = $request->address;
 
-        if($pass == $confirmPass){
+        if ($pass == $confirmPass) {
             $id = DB::table('all_users')->insert([
                 'name' => $name,
                 'email' => $email,
-                'password' => hash('sha1',$pass),
+                'password' => hash('sha1', $pass),
                 'role' => 'uni_admin'
             ]);
 
@@ -39,8 +54,6 @@ class AdminController extends Controller{
                 'name' => $universityName,
                 'address' => $universityAddress
             ]);
-
         }
-
     }
 }
