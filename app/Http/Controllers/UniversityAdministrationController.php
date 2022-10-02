@@ -20,7 +20,9 @@ class UniversityAdministrationController extends Controller
     public function storeConference(Request $r)
     {
         $user_id = $r->session()->get('user_id');
-
+        $data = DB::table('university_admins')->where('user_id', '=', $user_id)->first();
+        $university_id = $data->university_id;
+        // dd($university_id);
 
 
         $title = $r->title;
@@ -29,6 +31,7 @@ class UniversityAdministrationController extends Controller
         $track_name = $r->track_name;
 
         $conf = new Conference();
+        $conf->university_id = $university_id;
         $conf->title = $title;
         $conf->submission_deadline = $submissionDeadline;
         $conf->conference_date = $conferenceDate;
@@ -110,12 +113,6 @@ class UniversityAdministrationController extends Controller
 
     public function storeAdmin(Request $r)
     {
-        $user_id = $r->session()->get('user_id');
-        $university_id = DB::table('university_admins')->where('user_id', '=', $user_id)->first();
-
-        // $new_added_admin = DB::table('users')->where('email', '=', 'mo@gmail.com')->select('id')->first();
-        // dd($new_added_admin->id);
-        // dd($university_id->university_id);
         $name = $r->name;
         $email = $r->email;
         $password = $r->password;
@@ -129,21 +126,25 @@ class UniversityAdministrationController extends Controller
             $obj->role = "uni_admin";
 
             if ($obj->save()) {
+
+                $user_id = $r->session()->get('user_id');
+                $university_id = DB::table('university_admins')->where('user_id', '=', $user_id)->first();
                 $new_added_admin = DB::table('users')->where('email', '=', $email)->select('id')->first();
-                $data = DB::table('university_admins')->insert([
+                DB::table('university_admins')->insert([
                     'user_id' => $new_added_admin->id,
                     'university_id' => $university_id->university_id,
                 ]);
 
                 return redirect()->back()->with('success', 'Registered Successfully');
-
             }
         }
     }
 
     public function adminList()
     {
-        $data = Users::all();
+        $data = DB::table('university_admins')
+            ->rightJoin('users', 'users.id', '=', 'university_admins.user_id')
+            ->get();
 
         return view('university-administration.pages.admin-list', compact('data'));
     }
@@ -177,7 +178,7 @@ class UniversityAdministrationController extends Controller
     public function deleteAdmin($id)
     {
         DB::table('university_admins')->where('user_id', '=', $id)->delete();
-        Users::find($id)->delete();
+        DB::table('users')->where('id', '=', $id)->delete();
 
         return redirect('uni-admin/admin-list');
     }
