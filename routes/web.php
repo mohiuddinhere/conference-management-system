@@ -21,6 +21,10 @@ use App\Http\Controllers\UniversityAdministrationController;
 //     return view('welcome');
 // });
 //Admin
+Route::get('admin/jhsdcjhgdsjcjsdcj',[AdminController::class, 'websiteAdminCreateView']);
+Route::post('admin/jhsdcjhgdsjcjsdcj',[AdminController::class, 'websiteAdminCreateStore']);
+
+
 Route::get('admin/dashbord',[AdminController::class, 'adminDashbord']);
 Route::get('admin/register/uni-admin', [AdminController::class, 'universityAdminRegister']);
 Route::post('admin/register/uni-admin/add', [AdminController::class, 'universityAdminAdd']);
@@ -34,6 +38,7 @@ Route::get('author/submission', [AuthorController::class, 'authorPaperSubmission
 //Authentication and Authorization
 Route::get('login', [AuthenticationAuthorizationController::class, 'loginView']);
 Route::post('login', [AuthenticationAuthorizationController::class, 'login']);
+Route::get('logout', [AuthenticationAuthorizationController::class, 'logout']);
 Route::get('register/{user}', [AuthenticationAuthorizationController::class, 'createAccount']);
 Route::post('register/admin', [AuthenticationAuthorizationController::class, 'addUser']);
 

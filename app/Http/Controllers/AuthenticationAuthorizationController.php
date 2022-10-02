@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Session;
 
 class AuthenticationAuthorizationController extends Controller
 {
@@ -41,16 +42,29 @@ class AuthenticationAuthorizationController extends Controller
     {
         $email = $request->email;
         $password = hash('sha1', $request->password);
+
         $data = DB::table('users')->where('email', '=', $email)->where('password', '=', $password)->first();
+        
+        $id = $data->id;
         $role = $data->role;
+        error_log($id);
+
+
+        $request->session()->put('user_id', $id); //Storing Session Data
+
         if($role == 'admin'){
             return redirect('admin/dashbord');
         }elseif($role == 'uni_admin') {
-            return redirect('dashboard/uni-admin');
+            return redirect('uni-admin/dashboard');
         }elseif($role == 'auther'){
-            return redirect('dashboard/{user}');
+            return redirect('auther/dashboard');
         }elseif($role == 'reviewer'){
-            return redirect('dashboard/{user}');
+            return redirect('reviewer/dashboard');
         }
+    }
+
+    public function logout(Request $request){
+        $request->session()->flush();
+        return redirect('/login');
     }
 }
