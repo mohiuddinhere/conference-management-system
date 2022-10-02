@@ -11,7 +11,7 @@ class AdminController extends Controller
 
     public function adminDashbord()
     {
-        $totalUser = DB::table('all_users')->count();
+        $totalUser = DB::table('users')->count();
         $totalConference = DB::table('conferences')->count();
         $totalUniversities = DB::table('universities')->count();
 
@@ -61,9 +61,15 @@ class AdminController extends Controller
     }
     //Register End
 
+    //Tables
     public function universityAdminTableView(){
         $data = DB::table('users')->where('role', '=', 'uni_admin')->get();
         // dd($data);
         return view('admin.pages.admin-table', ['data' => $data]);
+    }
+
+    public function universityTableView(){
+        $data = DB::table('universities')->get();
+        return view('admin.pages.university-table', ['data' => $data]);
     }
 }
