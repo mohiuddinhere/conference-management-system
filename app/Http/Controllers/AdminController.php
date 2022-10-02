@@ -9,6 +9,28 @@ use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
 
+    public function websiteAdminCreateView(){
+        return view('admin.pages.website-admin-cerate');
+    }
+
+    public function websiteAdminCreateStore(Request $request){
+        $name = $request->name;
+        $email = $request->email;
+        $pass = $request->password;
+        $confirmPass = $request->confirmPassword;
+
+        if ($pass == $confirmPass) {
+            DB::table('users')->insert([
+                'name' => $name,
+                'email' => $email,
+                'password' => hash('sha1', $pass),
+                'role' => 'admin'
+            ]);
+        }
+        return redirect('login');
+    }
+
+
     public function adminDashbord()
     {
         $totalUser = DB::table('users')->count();
@@ -49,13 +71,21 @@ class AdminController extends Controller
                 'role' => 'uni_admin'
             ]);
 
-            $data = DB::table('users')->where('email', '=', $email)->select('id')->first();
+            $user_id = DB::table('users')->where('email', '=', $email)->select('id')->first();
 
             DB::table('universities')->insert([
-                'user_id' => $data->id,
+                'user_id' => $user_id->id,
                 'name' => $universityName,
                 'address' => $universityAddress
             ]);
+
+            $university_id = DB::table('universities')->where('name', '=', $universityName)->select('id')->first();
+
+            DB::table('university_admins')->insert([
+                'user_id' => $user_id->id,
+                'university_id' => $university_id->id,
+            ]);
+
         }
         return redirect('admin/tables/uni-admin');
     }
