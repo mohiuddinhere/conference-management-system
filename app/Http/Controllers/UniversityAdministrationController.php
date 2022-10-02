@@ -72,11 +72,15 @@ class UniversityAdministrationController extends Controller
 
             $track->save();
         }
-        return redirect('conference-list');
+        return redirect('uni-admin/conference-list');
     }
 
-    public function showDashboard($user){
-        return view('university-administration.pages.dashboard');
+    public function showDashboard(){
+        $user = new Users();
+        $user_data = $user->where('role', 'uni_admin')->count();
+
+        
+        return view('university-administration.pages.dashboard', compact('user_data'));
     }
 
     public function conferenceList(){
@@ -101,6 +105,7 @@ class UniversityAdministrationController extends Controller
             $obj->name = $name;
             $obj->email = $email;
             $obj->password = md5($password);
+            $obj->role = "uni_admin";
 
             if($obj->save()){
                 return redirect()->back()->with('success', 'Registered Successfully');
@@ -130,9 +135,10 @@ class UniversityAdministrationController extends Controller
             $admin->name = $r->name;
             $admin->email = $r->email;
             $admin->password = $password;
+            $admin->role = "uni_admin";
 
             if($admin->save()){
-                return redirect('admin-list');
+                return redirect('uni-admin/admin-list');
             }
         }  
     }
@@ -140,6 +146,6 @@ class UniversityAdministrationController extends Controller
     public function deleteAdmin($id){
         $admin = Users::find($id)->delete();
 
-        return redirect('admin-list');
+        return redirect('uni-admin/admin-list');
     }
 }

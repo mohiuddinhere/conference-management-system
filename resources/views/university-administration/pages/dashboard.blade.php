@@ -33,7 +33,7 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="{{ url('uni-admin/dashboard/admin') }}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                        <a href="{{ url('uni-admin/dashboard') }}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                     </li>
                     <li class="menu-title">Create</li><!-- /.menu-title -->
                     <li>
@@ -94,7 +94,7 @@
                 <div class="card bg-dark mr-4" style="width: 18rem;">
                     <div class="card-body text-center text-white">
                         <h4 class="card-title"><b>Admins</b></h4>
-                        <h6 class="card-subtitle mb-2">Card subtitle</h6>
+                        <h6 class="card-subtitle mb-2">{{ $user_data }}</h6>
                     </div>
                 </div>
 

@@ -33,7 +33,7 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="{{ url('uni-admin/dashboard/admin') }}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                        <a href="{{ url('uni-admin/dashboard') }}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                     </li>
                     <li class="menu-title">Create</li><!-- /.menu-title -->
                     <li>
