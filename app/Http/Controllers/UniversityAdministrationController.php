@@ -140,13 +140,17 @@ class UniversityAdministrationController extends Controller
         }
     }
 
-    public function adminList()
+    public function adminList(Request $r)
     {
+        $user_id = $r->session()->get('user_id');
+        $university_id = DB::table('university_admins')
+        ->where('user_id', '=', $user_id)->first();
+        $university_id = $university_id->university_id;
         $data = DB::table('university_admins')
             ->rightJoin('users', 'users.id', '=', 'university_admins.user_id')
-            ->where('role', '=', 'uni_admin')
+            ->where('university_id', '=', $university_id)
             ->get();
-        // dd($data);
+        // dd($university_id);
 
         return view('university-administration.pages.admin-list', compact('data'));
     }

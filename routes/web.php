@@ -33,6 +33,7 @@ Route::get('admin/tables/university', [AdminController::class, 'universityTableV
 
 //Author
 Route::get('author/dashbord', [AuthorController::class, 'authorDashbordView']);
+Route::get('author/tables/conference', [AuthorController::class, 'availableConferenceView']);
 Route::get('author/submission', [AuthorController::class, 'authorPaperSubmission']);
 
 
@@ -57,3 +58,5 @@ Route::get('uni-admin/admin-list', [UniversityAdministrationController::class, '
 Route::get('uni-admin/edit-admin-acc/{id}', [UniversityAdministrationController::class, 'editAdmin']);
 Route::post('update-admin/{id}', [UniversityAdministrationController::class, 'updateAdmin']);
 Route::get('uni-admin/delete-admin-acc/{id}', [UniversityAdministrationController::class, 'deleteAdmin']); 
+
+//Reviewer

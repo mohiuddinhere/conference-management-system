@@ -1,8 +1,8 @@
-@include('admin.includes.head')
+@include('author.includes.head')
 
 <body>
     <!-- Left Panel -->
-    @include('admin.includes.left-panel')
+    @include('author.includes.left-panel')
     <!-- Left Panel -->
 
     <!-- Right Panel -->
@@ -10,7 +10,7 @@
     <div id="right-panel" class="right-panel">
 
         <!-- Header-->
-        @include('admin.includes.header')
+        @include('author.includes.header')
         <!-- Header-->
 
         <div class="breadcrumbs">
@@ -19,7 +19,7 @@
                     <div class="col-sm-12">
                         <div class="page-header float-left">
                             <div class="page-title">
-                                <h1><b>Dashboard</b> (Admin)</h1>
+                                <h1><b>Dashboard</b> (Author)</h1>
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
         <div class="clearfix"></div>
 
         <!-- footer -->
-        @include('admin.includes.footer')
+        @include('author.includes.footer')
         <!-- footer -->
 
     </div><!-- /#right-panel -->

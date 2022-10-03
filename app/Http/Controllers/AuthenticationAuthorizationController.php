@@ -47,7 +47,6 @@ class AuthenticationAuthorizationController extends Controller
         
         $id = $data->id;
         $role = $data->role;
-        error_log($id);
 
 
         $request->session()->put('user_id', $id); //Storing Session Data
