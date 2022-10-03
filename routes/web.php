@@ -57,3 +57,5 @@ Route::get('uni-admin/admin-list', [UniversityAdministrationController::class, '
 Route::get('uni-admin/edit-admin-acc/{id}', [UniversityAdministrationController::class, 'editAdmin']);
 Route::post('update-admin/{id}', [UniversityAdministrationController::class, 'updateAdmin']);
 Route::get('uni-admin/delete-admin-acc/{id}', [UniversityAdministrationController::class, 'deleteAdmin']); 
+
+//Reviewer
