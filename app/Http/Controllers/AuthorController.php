@@ -8,7 +8,7 @@ class AuthorController extends Controller
 {
 
     public function authorDashbordView(){
-        
+        return view('author.pages.author-dashbord');
     }
 
     public function authorPaperSubmission(){

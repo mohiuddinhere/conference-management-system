@@ -9,11 +9,13 @@ use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
 
-    public function websiteAdminCreateView(){
+    public function websiteAdminCreateView()
+    {
         return view('admin.pages.website-admin-cerate');
     }
 
-    public function websiteAdminCreateStore(Request $request){
+    public function websiteAdminCreateStore(Request $request)
+    {
         $name = $request->name;
         $email = $request->email;
         $pass = $request->password;
@@ -85,21 +87,43 @@ class AdminController extends Controller
                 'user_id' => $user_id->id,
                 'university_id' => $university_id->id,
             ]);
-
         }
         return redirect('admin/tables/uni-admin');
     }
     //Register End
 
     //Tables
-    public function universityAdminTableView(){
+    public function universityAdminTableView()
+    {
         $data = DB::table('users')->where('role', '=', 'uni_admin')->get();
         // dd($data);
-        return view('admin.pages.admin-table', ['data' => $data]);
+        $totalUser = DB::table('users')->count();
+        $totalConference = DB::table('conferences')->count();
+        $totalUniversities = DB::table('universities')->count();
+
+        return view(
+            'admin.pages.admin-table',
+            [
+                'total_user' => $totalUser,
+                'total_conference' => $totalConference,
+                'total_universities' => $totalUniversities,
+                'data' => $data
+            ]
+        );
     }
 
-    public function universityTableView(){
+    public function universityTableView()
+    {
+        $totalUser = DB::table('users')->count();
+        $totalConference = DB::table('conferences')->count();
+        $totalUniversities = DB::table('universities')->count();
         $data = DB::table('universities')->get();
-        return view('admin.pages.university-table', ['data' => $data]);
+        
+        return view('admin.pages.university-table', 
+        [
+            'data' => $data, 'total_user' => $totalUser,
+            'total_conference' => $totalConference,
+            'total_universities' => $totalUniversities,
+        ]);
     }
 }
