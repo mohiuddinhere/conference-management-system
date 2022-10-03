@@ -23,7 +23,7 @@ return new class extends Migration
             $table->foreign('university_id')->references('id')->on('universities');
 
             $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 
