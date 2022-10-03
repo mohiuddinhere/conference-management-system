@@ -32,6 +32,7 @@ Route::get('admin/tables/uni-admin', [AdminController::class, 'universityAdminTa
 Route::get('admin/tables/university', [AdminController::class, 'universityTableView']);
 
 //Author
+Route::get('author/dashbord', [AuthorController::class, 'authorDashbordView']);
 Route::get('author/submission', [AuthorController::class, 'authorPaperSubmission']);
 
 

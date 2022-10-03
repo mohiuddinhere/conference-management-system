@@ -144,7 +144,9 @@ class UniversityAdministrationController extends Controller
     {
         $data = DB::table('university_admins')
             ->rightJoin('users', 'users.id', '=', 'university_admins.user_id')
+            ->where('role', '=', 'uni_admin')
             ->get();
+        // dd($data);
 
         return view('university-administration.pages.admin-list', compact('data'));
     }
