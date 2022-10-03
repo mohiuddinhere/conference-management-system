@@ -1,4 +1,4 @@
-@extends('admin.layouts.default')
+@extends('author.layouts.default')
 
 
 @section('title', 'Conference Table')
@@ -9,10 +9,10 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Created At</th>
-                <th>Updated At</th>
+                <th>Title </th>
+                <th>University</th>
+                <th>Submission Deadline</th>
+                <th>Conference Date</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -21,15 +21,15 @@
             <tr>
                 <td>{{ $d->id }}</td>
                 <td>
-                    {{ $d->name }}
+                    {{ $d->title  }}
                 </td>
+                <td>{{ $d->name  }}</td>
                 <td>
-                    {{ $d->address }}
+                    {{ $d->submission_deadline }}
                 </td>
-                <td>{{ $d->created_at }}</td>
-                <td>{{ $d->updated_at }}</td>
+                <td>{{ $d->conference_date }}</td>
                 <td>
-                    <a href="{{ url('edit-conference/'.$d->id) }}" class="btn btn-info">Edit</a>
+                    <a href="" class="btn btn-info">Submit</a>
                 </td>
             </tr>
             @endforeach

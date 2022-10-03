@@ -10,16 +10,16 @@
                     <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-cogs"></i>User</a>
                 </li>
                 <li>
-                    <a href="{{ url('admin/register/uni-admin') }}"> <i class="menu-icon fa fa-table"></i>University Admin</a>
+                    <a href="#"> <i class="menu-icon fa fa-table"></i>University Admin</a>
                 </li>
 
                 <li class="menu-title">Tables</li><!-- /.menu-title -->
 
                 <li>
-                    <a href="{{ url('admin/tables/uni-admin') }}"> <i class="menu-icon fa-solid fa-user-tie"></i>Admin</a>
+                    <a href="{{ url('author/tables/conference') }}"> <i class="menu-icon fa-solid fa-user-tie"></i>Available Conference</a>
                 </li>
                 <li>
-                    <a href="{{ url('admin/tables/university') }}" class="dropdown-toggle"> <i class="menu-icon fa fa-tasks"></i>University</a>
+                    <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-tasks"></i>University</a>
                 </li>
                 <li>
                     <a href="#"> <i class="menu-icon fa-solid fa-feather"></i>Auther</a>

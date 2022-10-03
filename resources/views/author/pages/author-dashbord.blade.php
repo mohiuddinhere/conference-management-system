@@ -1,7 +1,7 @@
-@extends('admin.layouts.default')
+@extends('author.layouts.default')
 
 
-@section('title', 'Author Admin Register')
+@section('title', 'Author Register')
 
 @section('bodys')
 <div class="animated fadeIn">
