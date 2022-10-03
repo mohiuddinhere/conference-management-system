@@ -12,6 +12,7 @@ use App\Models\Users;
 
 class UniversityAdministrationController extends Controller
 {
+    
     public function createConferencePaper()
     {
         return view('university-administration.pages.create-conference-paper');
@@ -98,10 +99,15 @@ class UniversityAdministrationController extends Controller
         return view('university-administration.pages.dashboard', compact('user_data'));
     }
 
-    public function conferenceList()
+    public function conferenceList(Request $r)
     {
-        $conf = new Conference();
-        $conferences = $conf->all();
+        // $conf = new Conference();
+        // $conferences = $conf->all();
+        $user_id = $r->session()->get('user_id');
+        $university_id = DB::table('university_admins')->where('user_id', '=', $user_id)->first();
+        $university_id = $university_id->university_id;
+        $conferences = DB::table('conferences')->where('university_id', '=', $university_id)->get();
+        // dd($conferences);
 
         return view('university-administration.pages.conference-list', compact('conferences'));
     }
