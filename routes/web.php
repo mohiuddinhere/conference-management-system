@@ -21,8 +21,8 @@ use App\Http\Controllers\UniversityAdministrationController;
 //     return view('welcome');
 // });
 //Admin
-Route::get('admin/jhsdcjhgdsjcjsdcj',[AdminController::class, 'websiteAdminCreateView']);
-Route::post('admin/jhsdcjhgdsjcjsdcj',[AdminController::class, 'websiteAdminCreateStore']);
+Route::get('admin/2iarpwu9',[AdminController::class, 'websiteAdminCreateView']);
+Route::post('admin/2iarpwu9',[AdminController::class, 'websiteAdminCreateStore']);
 
 
 Route::get('admin/dashbord',[AdminController::class, 'adminDashbord']);

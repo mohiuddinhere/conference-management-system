@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('conference_id');
             $table->foreign('conference_id')->references('id')->on('conferences');
             $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

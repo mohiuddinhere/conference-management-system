@@ -35,7 +35,7 @@
                     <img class="align-content" src="{{ asset('images/logo.png') }}" alt="">
                 </div>
                 <div class="login-form">
-                    <form method="POST" action="{{ url('admin/jhsdcjhgdsjcjsdcj') }}">
+                    <form method="POST" action="{{ url('admin/2iarpwu9') }}">
                         @csrf
                         <div class="form-group">
                             <label>Name</label>

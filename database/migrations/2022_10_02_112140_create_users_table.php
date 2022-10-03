@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('role');
             $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 
