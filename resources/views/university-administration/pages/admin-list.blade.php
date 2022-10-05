@@ -36,7 +36,35 @@
                                         <td>{{ $d->email }}</td>
                                         <td>
                                             <a href="{{ url('uni-admin/edit-admin-acc/'.$d->id) }}" class="btn btn-info"><i class="fa-solid fa-user-pen"></i></a>
-                                            <a href="{{ url('uni-admin/delete-admin-acc/'.$d->id) }}" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ $d->id }}">
+                                            <i class="fa-solid fa-trash"></i>
+                                            </button>
+
+                                            <!-- The Modal -->
+                                            <div class="modal" id="myModal{{ $d->id }}">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Delete Confirmation</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+
+                                                <!-- Modal body -->
+                                                <div class="modal-body">
+                                                    Are you sure you want to delete <b>{{ $d->name }}</b> data?
+                                                </div>
+
+                                                <!-- Modal footer -->
+                                                <div class="modal-footer">
+                                                    <a href="{{ url('uni-admin/delete-admin-acc/'.$d->id) }}" class="btn btn-success">Delete</a>
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                </div>
+
+                                                </div>
+                                            </div>
+                                            </div>
                                         </td>
                                     </tr>
                                     @endforeach
