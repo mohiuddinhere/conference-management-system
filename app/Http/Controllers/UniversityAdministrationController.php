@@ -164,27 +164,34 @@ class UniversityAdministrationController extends Controller
     public function editAdmin($id)
     {
         $obj = new Users();
-        $admins = $obj->find($id)->first();
+        $admins = $obj->find($id);
 
         return view('university-administration.pages.edit-admin', compact('admins'));
     }
 
     public function updateAdmin(Request $r, $id)
     {
+        $oldpassword = $r->oldpassword;
         $password = $r->password;
         $confirmPass = $r->confirmPassword;
 
-        if ($password == $confirmPass) {
+        $obj = Users::find($id);
+        $db_pass = $obj->password;
+
+        if(hash('sha1',$oldpassword) == $db_pass && $password == $confirmPass){
             $admin = Users::find($id);
             $admin->name = $r->name;
             $admin->email = $r->email;
-            $admin->password = $password;
+            $admin->password = hash('sha1',$password);
             $admin->role = "uni_admin";
 
             if ($admin->save()) {
                 return redirect('uni-admin/admin-list');
             }
+        }else{
+            return redirect()->back()->with('err', 'Old Password Mismatched');
         }
+        
     }
 
     public function deleteAdmin($id)
