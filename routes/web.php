@@ -32,9 +32,10 @@ Route::get('admin/tables/uni-admin', [AdminController::class, 'universityAdminTa
 Route::get('admin/tables/university', [AdminController::class, 'universityTableView']);
 
 //Author
-Route::get('author/dashbord', [AuthorController::class, 'authorDashbordView']);
+Route::get('author/dashboard', [AuthorController::class, 'authorDashbordView']);
 Route::get('author/tables/conference', [AuthorController::class, 'availableConferenceView']);
-Route::get('author/submission', [AuthorController::class, 'authorPaperSubmission']);
+Route::get('author/conference/{id}', [AuthorController::class, 'authorPaperConference']);
+Route::post('author/submission/{id}', [AuthorController::class, 'authorPaperSubmissionStore']);
 
 
 //Authentication and Authorization
@@ -43,6 +44,7 @@ Route::post('login', [AuthenticationAuthorizationController::class, 'login']);
 Route::get('logout', [AuthenticationAuthorizationController::class, 'logout']);
 Route::get('register/{user}', [AuthenticationAuthorizationController::class, 'createAccount']);
 Route::post('register/admin', [AuthenticationAuthorizationController::class, 'addUser']);
+Route::post('register/author', [AuthenticationAuthorizationController::class, 'addUser']);
 
 
 //University Administrator 
