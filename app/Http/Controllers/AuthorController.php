@@ -17,10 +17,10 @@ class AuthorController extends Controller
     {
         $time = date('Y-m-d');
         $data = DB::table('conferences')
-        ->where('submission_deadline', '>=', $time)
-        ->join('universities', 'universities.id', 'university_id')
-        ->select('conferences.id', 'conferences.title', 'conferences.submission_deadline', 'conferences.conference_date', 'universities.name')
-        ->get();
+            ->where('submission_deadline', '>=', $time)
+            ->join('universities', 'universities.id', 'university_id')
+            ->select('conferences.id', 'conferences.title', 'conferences.submission_deadline', 'conferences.conference_date', 'universities.name')
+            ->get();
         // dd($data);
         return view(
             'author.pages.conference-table',
@@ -30,8 +30,41 @@ class AuthorController extends Controller
         );
     }
 
-    public function authorPaperSubmission()
+    public function authorPaperConference($id)
     {
-        return view('author.pages.author-paper-submission');
+        $data = DB::table('tracks')->where('conference_id', '=', $id)->get();
+        // dd($data);
+        return view('author.pages.author-paper-submission', ['submission_id' => $id, 'data' => $data]);
+    }
+
+    public function authorPaperSubmissionStore(Request $request,)
+    {
+        // dd($request->file->getClientOriginalName());
+
+        $request->validate([
+
+            'file' => 'required|mimes:pdf|max:2048',
+        ]);
+
+        $originalName = $request->file->getClientOriginalName();
+        $time = time();
+        $fileName = $time . '_' . $originalName;
+        $title = $request->title;
+        $track = $request->track;
+        $abstract = $request->abstract;
+        $tags = $request->tags;
+        $user_id = $request->session()->get('user_id');
+        $request->file->move(public_path('uploads'), $fileName);
+
+        DB::table('submissions')->insert([
+            'title' => $title,
+            'abstract' => $abstract,
+            'tags' => $tags,
+            'file_name' => $fileName,
+            'track_id' => $track,
+            'user_id' => $user_id
+        ]);
+
+        return back()->with('success', 'You have successfully upload file.')->with('file', $fileName);
     }
 }

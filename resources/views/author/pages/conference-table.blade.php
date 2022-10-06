@@ -29,7 +29,7 @@
                 </td>
                 <td>{{ $d->conference_date }}</td>
                 <td>
-                    <a href="" class="btn btn-info">Submit</a>
+                    <a href="{{ url('author/conference/'.$d->id) }}" class="btn btn-info">Submit</a>
                 </td>
             </tr>
             @endforeach

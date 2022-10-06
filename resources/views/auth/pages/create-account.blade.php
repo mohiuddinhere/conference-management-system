@@ -58,6 +58,7 @@
                                 <input type="checkbox"> Agree the terms and policy
                             </label>
                         </div>
+                        <input type="text" name="user" value="{{ $user }}" style="display: none;">
                         <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Register</button>
                         <div class="social-login-content">
                             <div class="social-button">

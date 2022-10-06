@@ -15,21 +15,23 @@ class AuthenticationAuthorizationController extends Controller
     }
     public function addUser(Request $request)
     {
-        // dd($request);
-        $name = $request->name;
-        $email = $request->email;
-        $password = $request->password;
-        $confirmpassword = $request->confirmPassword;
+        // dd($user);
+        if ($request->user == 'uni_admin' || $request->user == 'author' || $request->user ==  'reviewer') {
+            $name = $request->name;
+            $email = $request->email;
+            $password = $request->password;
+            $confirmpassword = $request->confirmPassword;
 
-        if ($password == $confirmpassword) {
-            $password = hash('sha1', $password);
+            if ($password == $confirmpassword) {
+                $password = hash('sha1', $password);
 
-            $id = DB::table('users')->insert([
-                "name" => $name,
-                "email" => $email,
-                "password" => $password,
-                "role" => "uni_admin"
-            ]);
+                $id = DB::table('users')->insert([
+                    "name" => $name,
+                    "email" => $email,
+                    "password" => $password,
+                    "role" => $request->user
+                ]);
+            }
         }
     }
 
@@ -44,25 +46,26 @@ class AuthenticationAuthorizationController extends Controller
         $password = hash('sha1', $request->password);
 
         $data = DB::table('users')->where('email', '=', $email)->where('password', '=', $password)->first();
-        
+
         $id = $data->id;
         $role = $data->role;
 
 
         $request->session()->put('user_id', $id); //Storing Session Data
 
-        if($role == 'admin'){
+        if ($role == 'admin') {
             return redirect('admin/dashbord');
-        }elseif($role == 'uni_admin') {
+        } elseif ($role == 'uni_admin') {
             return redirect('uni-admin/dashboard');
-        }elseif($role == 'auther'){
-            return redirect('auther/dashboard');
-        }elseif($role == 'reviewer'){
+        } elseif ($role == 'author') {
+            return redirect('author/dashboard');
+        } elseif ($role == 'reviewer') {
             return redirect('reviewer/dashboard');
         }
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         $request->session()->flush();
         return redirect('/login');
     }
