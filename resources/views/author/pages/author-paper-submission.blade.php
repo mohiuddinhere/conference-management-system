@@ -38,6 +38,11 @@
                 <div class="card-body">
                     <div class="container pt-4">
                         <h3 class="mb-4 text-center font-weight-bold">Submit Paper Here</h3>
+                        @if(Session::has('success'))
+                        <div class="alert alert-success">
+                            {{ Session::get('success') }}
+                        </div>
+                        @endif
                         <form method="POST" action="{{ url('author/submission/'.$submission_id) }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">

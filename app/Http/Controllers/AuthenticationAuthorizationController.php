@@ -33,6 +33,7 @@ class AuthenticationAuthorizationController extends Controller
                 ]);
             }
         }
+        return redirect('login');
     }
 
     public function loginView()
