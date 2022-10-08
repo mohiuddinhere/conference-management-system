@@ -10,7 +10,7 @@
                     <a href="{{ url('author/tables/conference') }}"> <i class="menu-icon fa-solid fa-user-tie"></i>Available Conference</a>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-tasks"></i>University</a>
+                    <a href="{{ url('author/tables/submission') }}" class="dropdown-toggle"> <i class="menu-icon fa fa-tasks"></i>Submissions</a>
                 </li>
                 <li>
                     <a href="#"> <i class="menu-icon fa-solid fa-feather"></i>Auther</a>
