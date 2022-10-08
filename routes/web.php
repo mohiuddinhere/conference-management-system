@@ -36,6 +36,7 @@ Route::get('author/dashboard', [AuthorController::class, 'authorDashbordView']);
 Route::get('author/tables/conference', [AuthorController::class, 'availableConferenceView']);
 Route::get('author/conference/{id}', [AuthorController::class, 'authorPaperConference']);
 Route::post('author/submission/{id}', [AuthorController::class, 'authorPaperSubmissionStore']);
+Route::get('author/tables/submission', [AuthorController::class, 'submissionTableView']);
 
 
 //Authentication and Authorization

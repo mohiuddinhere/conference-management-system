@@ -37,7 +37,7 @@ class AuthorController extends Controller
         return view('author.pages.author-paper-submission', ['submission_id' => $id, 'data' => $data]);
     }
 
-    public function authorPaperSubmissionStore(Request $request,)
+    public function authorPaperSubmissionStore(Request $request)
     {
         // dd($request->file->getClientOriginalName());
 
@@ -56,15 +56,41 @@ class AuthorController extends Controller
         $user_id = $request->session()->get('user_id');
         $request->file->move(public_path('uploads'), $fileName);
 
+        $id = DB::table('tracks')->where('id', '=', $track)->first();
+        $conference_id = $id->conference_id;
         DB::table('submissions')->insert([
             'title' => $title,
             'abstract' => $abstract,
             'tags' => $tags,
             'file_name' => $fileName,
+            'conference_id' => $conference_id,
             'track_id' => $track,
             'user_id' => $user_id
         ]);
 
         return back()->with('success', 'You have successfully upload file.')->with('file', $fileName);
+    }
+
+    public function submissionTableView(Request $request)
+    {
+        $user_id = $request->session()->get('user_id');
+        $data = DB::table('submissions')
+            ->join('tracks', 'tracks.id', '=', 'submissions.track_id')
+            ->join('conferences', 'conferences.id', '=', 'submissions.conference_id')
+            ->select('submissions.id', 'submissions.title', 'submissions.abstract', 'submissions.tags', 'submissions.file_name', 'tracks.name as tracks_name', 'conferences.title as conferences_title')
+            ->where('user_id', '=', $user_id)
+            ->get();
+
+        // $conference = array();
+        // foreach ($data as $d) {
+        //     $conference_data = DB::table('conferences')->where('id', '=', $d->conference_id)->get();
+        //     array_push($conference, $conference_data);
+        // }
+        // $a = array_combine($data, $conference);
+
+        return view('author.pages.submission-table', [
+            'data' => $data,
+        ]);
+        // dd($data);
     }
 }
