@@ -22,6 +22,9 @@
                     <a href="{{ url('admin/tables/university') }}" class="dropdown-toggle"> <i class="menu-icon fa fa-tasks"></i>University</a>
                 </li>
                 <li>
+                    <a href="{{ url('admin/tables/conference') }}" class="dropdown-toggle"> <i class="menu-icon fa fa-tasks"></i>Conference</a>
+                </li>
+                <li>
                     <a href="#"> <i class="menu-icon fa-solid fa-feather"></i>Auther</a>
                 </li>
                 <li>

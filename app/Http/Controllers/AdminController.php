@@ -118,12 +118,35 @@ class AdminController extends Controller
         $totalConference = DB::table('conferences')->count();
         $totalUniversities = DB::table('universities')->count();
         $data = DB::table('universities')->get();
-        
-        return view('admin.pages.university-table', 
-        [
-            'data' => $data, 'total_user' => $totalUser,
-            'total_conference' => $totalConference,
-            'total_universities' => $totalUniversities,
-        ]);
+
+        return view(
+            'admin.pages.university-table',
+            [
+                'data' => $data, 'total_user' => $totalUser,
+                'total_conference' => $totalConference,
+                'total_universities' => $totalUniversities,
+            ]
+        );
+    }
+
+    public function conferenceTableView()
+    {
+        $data = DB::table('users')->where('role', '=', 'uni_admin')->get();
+        // dd($data);
+        $totalUser = DB::table('users')->count();
+        $totalConference = DB::table('conferences')->count();
+        $totalUniversities = DB::table('universities')->count();
+
+        $data = DB::table('conferences')->orderBy('submission_deadline', 'DESC')->get();
+        // dd($data);
+        return view(
+            'admin.pages.conference-table',
+            [
+                'total_user' => $totalUser,
+                'total_conference' => $totalConference,
+                'total_universities' => $totalUniversities,
+                'data' => $data
+            ]
+        );
     }
 }
