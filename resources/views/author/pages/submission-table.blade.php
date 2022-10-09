@@ -8,12 +8,13 @@
     <table id="bootstrap-data-table" class="table table-striped table-bordered">
         <thead>
             <tr>
-                <th>Title </th>
+                <th>Conferences Title</th>
                 <th>Title </th>
                 <th>Abstract</th>
                 <th>Tags</th>
                 <th>Track Name</th>
-                <th>Conference Name</th>
+                <th>File</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -29,7 +30,7 @@
                     {{ Str::limit($d->abstract, 50)  }}
                 </td>
                 <td>
-                    {{ $d->tags  }}
+                    {{ Str::limit($d->tags, 50)  }}
                 </td>
                 <td>
                     {{ $d->tracks_name }}

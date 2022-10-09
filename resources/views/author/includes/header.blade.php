@@ -3,7 +3,7 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" style="display: inline;" href="{{url('admin/dashbord')}}"><img src="{{ asset('images/logo.png') }}" alt="Logo"></a>
                     <a class="navbar-brand hidden" href="#"><img src="{{ asset('images/logo2.png') }}" alt="Logo"></a>
-                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars" aria-hidden="true"></i></a>
                 </div>
             </div>
             <div class="top-right">

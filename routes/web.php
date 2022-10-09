@@ -30,6 +30,8 @@ Route::get('admin/register/uni-admin', [AdminController::class, 'universityAdmin
 Route::post('admin/register/uni-admin/add', [AdminController::class, 'universityAdminAdd']);
 Route::get('admin/tables/uni-admin', [AdminController::class, 'universityAdminTableView']);
 Route::get('admin/tables/university', [AdminController::class, 'universityTableView']);
+Route::get('admin/tables/conference', [AdminController::class, 'conferenceTableView']);
+
 
 //Author
 Route::get('author/dashboard', [AuthorController::class, 'authorDashbordView']);
