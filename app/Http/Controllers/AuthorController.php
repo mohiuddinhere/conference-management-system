@@ -63,7 +63,7 @@ class AuthorController extends Controller
             'abstract' => $abstract,
             'tags' => $tags,
             'file_name' => $fileName,
-            'conference_id' => $conference_id,
+            'submissions_conference_id' => $conference_id,
             'track_id' => $track,
             'user_id' => $user_id
         ]);
@@ -76,7 +76,7 @@ class AuthorController extends Controller
         $user_id = $request->session()->get('user_id');
         $data = DB::table('submissions')
             ->join('tracks', 'tracks.id', '=', 'submissions.track_id')
-            ->join('conferences', 'conferences.id', '=', 'submissions.conference_id')
+            ->join('conferences', 'conferences.id', '=', 'submissions.submissions_conference_id')
             ->select('submissions.id', 'submissions.title', 'submissions.abstract', 'submissions.tags', 'submissions.file_name', 'tracks.name as tracks_name', 'conferences.title as conferences_title')
             ->where('user_id', '=', $user_id)
             ->get();
