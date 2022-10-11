@@ -39,7 +39,7 @@
                     {{ $d->file_name }}
                 </td>
                 <td>
-                    <a href="{{ url('author/submission/'.$d->id) }}" class="btn btn-info">Submit</a>
+                    <a href="{{ url('author/submission/delete/'.$d->id) }}" class="btn btn-info">Delete</a>
                 </td>
             </tr>
             @endforeach

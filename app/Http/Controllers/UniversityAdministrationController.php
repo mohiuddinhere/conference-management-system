@@ -8,7 +8,8 @@ use App\Models\Conference;
 use App\Models\Track;
 use App\Models\UniversityAdmin;
 use App\Models\Users;
-
+use Illuminate\Contracts\View\View;
+use Illuminate\View\ViewFinderInterface;
 
 class UniversityAdministrationController extends Controller
 {
@@ -200,5 +201,17 @@ class UniversityAdministrationController extends Controller
         DB::table('users')->where('id', '=', $id)->delete();
 
         return redirect('uni-admin/admin-list');
+    }
+
+    public function conferenceSubmissionsView($id){
+        $data = DB::table('submissions')
+        ->where('submissions_conference_id', '=', $id)
+        ->join('users', 'users.id', '=', 'submissions.user_id')
+        ->join('tracks', 'tracks.id', '=', 'submissions.track_id')
+        ->join('conferences', 'conferences.id', '=', 'submissions.submissions_conference_id')
+        ->select('submissions.id', 'submissions.title', 'submissions.tags', 'users.name as user_name' , 'tracks.name as track_name', 'conferences.title as conference_name')
+        ->get();
+        
+        return View('university-administration.pages.conference-submissions-table', ['data' => $data]);
     }
 }
