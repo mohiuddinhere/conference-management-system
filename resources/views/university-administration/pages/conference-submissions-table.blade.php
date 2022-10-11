@@ -1,9 +1,9 @@
-@extends('author.layouts.default')
+@extends('university-administration.layouts.default')
 
 
 @section('title', 'Conference Table')
 
-@section('bodys')
+@section('content')
 <div class="card-body">
     <table id="bootstrap-data-table" class="table table-striped table-bordered">
         <thead>
