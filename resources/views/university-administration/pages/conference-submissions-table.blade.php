@@ -10,6 +10,11 @@
         {{ Session::get('success') }}
     </div>
     @endif
+    @if(Session::has('err'))
+    <div class="alert alert-danger" role="alert">
+        {{ Session::get('err') }}
+    </div>
+    @endif
     <table id="bootstrap-data-table" class="table table-striped table-bordered">
         <thead>
             <tr>
