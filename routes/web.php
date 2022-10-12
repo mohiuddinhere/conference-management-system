@@ -48,6 +48,7 @@ Route::get('logout', [AuthenticationAuthorizationController::class, 'logout']);
 Route::get('register/{user}', [AuthenticationAuthorizationController::class, 'createAccount']);
 Route::post('register/admin', [AuthenticationAuthorizationController::class, 'addUser']);
 Route::post('register/author', [AuthenticationAuthorizationController::class, 'addUser']);
+Route::post('register/reviewer', [AuthenticationAuthorizationController::class, 'addUser']);
 
 
 //University Administrator 

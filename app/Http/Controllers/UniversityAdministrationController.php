@@ -225,15 +225,19 @@ class UniversityAdministrationController extends Controller
         $user_data = DB::table('users')->where('email', '=', $email)->first();
         $user_id = $user_data->id;
 
-        $review->review_user_id = $user_id;
-        $review->review_submission_id = $id;
-        $review->msg = $msg;
+        if ($user_data->role == 'reviewer') {
+            $review->review_user_id = $user_id;
+            $review->review_submission_id = $id;
+            $review->msg = $msg;
 
-        
-        if($review->save()){
-            return redirect()->back()->with('success', 'Reviewer Assigned');
+
+            if ($review->save()) {
+                return redirect()->back()->with('success', 'Reviewer Assigned');
+            } else {
+                return redirect()->back()->with('err', 'Reviewer Not found');
+            }
         }else{
-            return redirect()->back()->with('err', 'Reviewer Not found');
+            return redirect()->back()->with('err', 'He/She is not a Reviewer');
         }
     }
 }
