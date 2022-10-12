@@ -8,12 +8,13 @@ use App\Models\Conference;
 use App\Models\Track;
 use App\Models\UniversityAdmin;
 use App\Models\Users;
+use App\Models\Review;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\ViewFinderInterface;
 
 class UniversityAdministrationController extends Controller
 {
-    
+
     public function createConferencePaper()
     {
         return view('university-administration.pages.create-conference-paper');
@@ -151,7 +152,7 @@ class UniversityAdministrationController extends Controller
     {
         $user_id = $r->session()->get('user_id');
         $university_id = DB::table('university_admins')
-        ->where('user_id', '=', $user_id)->first();
+            ->where('user_id', '=', $user_id)->first();
         $university_id = $university_id->university_id;
         $data = DB::table('university_admins')
             ->rightJoin('users', 'users.id', '=', 'university_admins.user_id')
@@ -179,20 +180,19 @@ class UniversityAdministrationController extends Controller
         $obj = Users::find($id);
         $db_pass = $obj->password;
 
-        if(hash('sha1',$oldpassword) == $db_pass && $password == $confirmPass){
+        if (hash('sha1', $oldpassword) == $db_pass && $password == $confirmPass) {
             $admin = Users::find($id);
             $admin->name = $r->name;
             $admin->email = $r->email;
-            $admin->password = hash('sha1',$password);
+            $admin->password = hash('sha1', $password);
             $admin->role = "uni_admin";
 
             if ($admin->save()) {
                 return redirect('uni-admin/admin-list');
             }
-        }else{
+        } else {
             return redirect()->back()->with('err', 'Old Password Mismatched');
         }
-        
     }
 
     public function deleteAdmin($id)
@@ -203,15 +203,37 @@ class UniversityAdministrationController extends Controller
         return redirect('uni-admin/admin-list');
     }
 
-    public function conferenceSubmissionsView($id){
+    public function conferenceSubmissionsView($id)
+    {
         $data = DB::table('submissions')
-        ->where('submissions_conference_id', '=', $id)
-        ->join('users', 'users.id', '=', 'submissions.user_id')
-        ->join('tracks', 'tracks.id', '=', 'submissions.track_id')
-        ->join('conferences', 'conferences.id', '=', 'submissions.submissions_conference_id')
-        ->select('submissions.id', 'submissions.title', 'submissions.tags', 'users.name as user_name' , 'tracks.name as track_name', 'conferences.title as conference_name')
-        ->get();
-        
+            ->where('submissions_conference_id', '=', $id)
+            ->join('users', 'users.id', '=', 'submissions.user_id')
+            ->join('tracks', 'tracks.id', '=', 'submissions.track_id')
+            ->join('conferences', 'conferences.id', '=', 'submissions.submissions_conference_id')
+            ->select('submissions.id', 'submissions.title', 'submissions.tags', 'users.name as user_name', 'tracks.name as track_name', 'conferences.title as conference_name')
+            ->get();
+
         return View('university-administration.pages.conference-submissions-table', ['data' => $data]);
+    }
+
+    public function addReviewerInSubmissionPaper(Request $request, $id)
+    {
+        $review = new Review();
+
+        $email = $request->email;
+        $msg = $request->massage;
+        $user_data = DB::table('users')->where('email', '=', $email)->first();
+        $user_id = $user_data->id;
+
+        $review->review_user_id = $user_id;
+        $review->review_submission_id = $id;
+        $review->msg = $msg;
+
+        
+        if($review->save()){
+            return redirect()->back()->with('success', 'Reviewer Assigned');
+        }else{
+            return redirect()->back()->with('err', 'Reviewer Not found');
+        }
     }
 }

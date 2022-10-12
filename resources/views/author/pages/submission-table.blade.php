@@ -36,7 +36,7 @@
                     {{ $d->tracks_name }}
                 </td>
                 <td>
-                    {{ $d->file_name }}
+                    {{ Str::limit($d->file_name, 12) }}
                 </td>
                 <td>
                     <a href="{{ url('author/submission/delete/'.$d->id) }}" class="btn btn-info">Delete</a>
