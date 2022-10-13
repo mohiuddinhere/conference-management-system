@@ -73,8 +73,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <a href="{{ url('uni-admin/marking/table/'.$d->id) }}" class="btn btn-info mt-1">View Markings</a>
                 </td>
             </tr>
             @endforeach
