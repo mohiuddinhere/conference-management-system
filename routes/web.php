@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\AuthenticationAuthorizationController;
 use App\Http\Controllers\UniversityAdministrationController;
+use App\Http\Controllers\ReviewerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,4 +69,5 @@ Route::get('uni-admin/conference/table/submissions/{id}', [UniversityAdministrat
 Route::post('uni_admin/add-reviewer/{id}', [UniversityAdministrationController::class, 'addReviewerInSubmissionPaper']);
 
 //Reviewer
-
+Route::get('reviewer/dashboard', [ReviewerController::class, 'reviewerDashbordView']);
+Route::get('reviewer/table/assigned-paper', [ReviewerController::class, 'assignedPaperView']);
