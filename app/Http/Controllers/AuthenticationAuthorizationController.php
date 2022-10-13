@@ -50,9 +50,11 @@ class AuthenticationAuthorizationController extends Controller
 
         $id = $data->id;
         $role = $data->role;
+        $user_name = $data->name;
 
 
         $request->session()->put('user_id', $id); //Storing Session Data
+        $request->session()->put('user_name', $user_name);
 
         if ($role == 'admin') {
             return redirect('admin/dashbord');

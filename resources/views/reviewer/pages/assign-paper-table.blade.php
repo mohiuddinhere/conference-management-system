@@ -3,6 +3,8 @@
 
 @section('title', 'Assign Paper Table')
 
+@section('user_name', $user_name)
+
 @section('bodys')
 
 <div class="animated fadeIn">

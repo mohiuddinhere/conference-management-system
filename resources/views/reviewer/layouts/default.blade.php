@@ -19,7 +19,7 @@
                     <div class="col-sm-12">
                         <div class="page-header float-left">
                             <div class="page-title">
-                                <h1><b>Dashboard</b> (Reviewer)</h1>
+                                <h1><b>@yield('user_name')</b> (Reviewer)</h1>
                             </div>
                         </div>
                     </div>
