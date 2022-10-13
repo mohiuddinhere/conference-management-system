@@ -11,6 +11,7 @@ use App\Models\Users;
 use App\Models\Review;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\ViewFinderInterface;
+use App\Models\Marking;
 
 class UniversityAdministrationController extends Controller
 {
@@ -239,5 +240,14 @@ class UniversityAdministrationController extends Controller
         }else{
             return redirect()->back()->with('err', 'He/She is not a Reviewer');
         }
+    }
+
+    public function showMarking(){
+        $conf = DB::table('conferences')->where('');
+
+        $marking = DB::table('markings')->join('submissions', 'submissions.id', '=', 'markings.marking_submission_id')
+        ->select('submissions.submissions_conference_id')->get();
+
+        dd($marking);
     }
 }

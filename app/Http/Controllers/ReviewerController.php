@@ -8,6 +8,9 @@ use App\Http\Controllers\Session;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\ViewFinderInterface;
 
+use App\Models\Review;
+use App\Models\Marking;
+
 class ReviewerController extends Controller
 {
     public function reviewerDashbordView(Request $request)
@@ -55,5 +58,30 @@ class ReviewerController extends Controller
                 'user_name' => $user_name
             ]
         );
+    }
+
+    public function reviewMark(Request $r, $id){
+        $review = New Review();
+        $reviewData = $review->where('review_submission_id', '=', $id)->first();
+
+        $mark = $r->marking;
+        $submissionId = $id;
+        $reviewId = $reviewData->id;
+        
+        $marking = New Marking();
+        
+        $marking->review_status = $mark;
+        $marking->marking_submission_id = $submissionId;
+        $marking->marking_review_id = $reviewId;
+
+        $data = Marking::where('marking_review_id', '=', $reviewId)->count();
+
+        if($data >= 1){
+            return redirect()->back()->with('err', 'Marking already done');
+        }else{
+            if($marking->save()){
+                return redirect()->back()->with('success', 'Marking Done');
+            }
+        } 
     }
 }
