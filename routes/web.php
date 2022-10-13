@@ -71,3 +71,4 @@ Route::post('uni_admin/add-reviewer/{id}', [UniversityAdministrationController::
 //Reviewer
 Route::get('reviewer/dashboard', [ReviewerController::class, 'reviewerDashbordView']);
 Route::get('reviewer/table/assigned-paper', [ReviewerController::class, 'assignedPaperView']);
+Route::get('paper-download/{id}', [ReviewerController::class, 'paperDownload']);
