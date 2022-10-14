@@ -74,4 +74,4 @@ Route::get('reviewer/dashboard', [ReviewerController::class, 'reviewerDashbordVi
 Route::get('reviewer/table/assigned-paper', [ReviewerController::class, 'assignedPaperView']);
 Route::get('paper-download/{id}', [ReviewerController::class, 'paperDownload']);
 Route::get('review-submission-paper/{id}', [ReviewerController::class, 'reviewSubmissionPaper']);
-Route::post('reviewer/mark/{id}', [ReviewerController::class, 'reviewMark']);
+Route::post('reviewer/mark/{submission_id}', [ReviewerController::class, 'reviewMark']);

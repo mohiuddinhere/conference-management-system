@@ -60,29 +60,27 @@ class ReviewerController extends Controller
         );
     }
 
-    public function reviewMark(Request $r, $id){
-        $review = New Review();
-        $reviewData = $review->where('review_submission_id', '=', $id)->first();
+    public function reviewMark(Request $r, $submission_id){
+        // $data = DB::table('reviews')
+        // ->join('submissions', function($join) use ($submission_id) {
+        //     $join->where('submissions.id', $submission_id);
+        //  })
+        // ->select('reviews.review_user_id', 'submissions.submissions_conference_id')
+        // ->where('review_submission_id', '=', $submission_id)
+        // ->get();
+        $conference_id = DB::table('submissions')->where('id', '=', $submission_id)
+        ->select('id')
+        ->first();
+        $conference_id = $conference_id->id;
+        $user_id = $r->session()->get('user_id');
+        // dd($conference_id);
 
-        $submission = DB::table('submissions')->where('id', '=', $id)
-        ->select('submissions_conference_id')->first();
 
-        $mark = $r->marking;
-        $submissionId = $id;
-        $reviewId = $reviewData->review_user_id;
-
-        // $marking = New Marking();
-        
-        // $marking->review_status = $mark;
-        // $marking->marking_submission_id = $submissionId;
-        // $marking->marking_review_id = $reviewId;
-        // $marking->marking_conference_id = $submission->submissions_conference_id;
-
-        $marking = DB::table('markings')->insert([
-            'review_status' => $mark,
-            'marking_submission_id' => $submissionId,
-            'marking_review_id' => $reviewId,
-            'marking_conference_id' => $submission->submissions_conference_id
+        DB::table('markings')->insert([
+            'review_status' => $r->marking,
+            'marking_submission_id' => $submission_id,
+            'marking_review_user_id' => $user_id,
+            'marking_conference_id' => $conference_id
         ]);
 
 
