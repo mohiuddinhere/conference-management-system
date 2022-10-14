@@ -64,24 +64,40 @@ class ReviewerController extends Controller
         $review = New Review();
         $reviewData = $review->where('review_submission_id', '=', $id)->first();
 
+        $submission = DB::table('submissions')->where('id', '=', $id)
+        ->select('submissions_conference_id')->first();
+
         $mark = $r->marking;
         $submissionId = $id;
-        $reviewId = $reviewData->id;
-        
-        $marking = New Marking();
-        
-        $marking->review_status = $mark;
-        $marking->marking_submission_id = $submissionId;
-        $marking->marking_review_id = $reviewId;
+        $reviewId = $reviewData->review_user_id;
 
-        $data = Marking::where('marking_review_id', '=', $reviewId)->count();
+        // $marking = New Marking();
+        
+        // $marking->review_status = $mark;
+        // $marking->marking_submission_id = $submissionId;
+        // $marking->marking_review_id = $reviewId;
+        // $marking->marking_conference_id = $submission->submissions_conference_id;
 
-        if($data >= 1){
-            return redirect()->back()->with('err', 'Marking already done');
-        }else{
-            if($marking->save()){
-                return redirect()->back()->with('success', 'Marking Done');
-            }
-        } 
+        $marking = DB::table('markings')->insert([
+            'review_status' => $mark,
+            'marking_submission_id' => $submissionId,
+            'marking_review_id' => $reviewId,
+            'marking_conference_id' => $submission->submissions_conference_id
+        ]);
+
+
+        // if($marking->save()){
+        //     return redirect()->back()->with('success', 'Marking Done');
+        // }
+
+        // $data = Marking::where('marking_review_id', '=', $reviewId)->count();
+
+        // if($data >= 1){
+        //     return redirect()->back()->with('err', 'Marking already done');
+        // }else{
+        //     if($marking->save()){
+        //         return redirect()->back()->with('success', 'Marking Done');
+        //     }
+        // } 
     }
 }

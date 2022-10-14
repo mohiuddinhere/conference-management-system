@@ -214,7 +214,15 @@ class UniversityAdministrationController extends Controller
             ->select('submissions.id', 'submissions.title', 'submissions.tags', 'users.name as user_name', 'tracks.name as track_name', 'conferences.title as conference_name')
             ->get();
 
-        return View('university-administration.pages.conference-submissions-table', ['data' => $data]);
+        // json_encode($data);
+
+        $marks = DB::table('markings')->where('marking_conference_id', '=', $id)
+        ->select('review_status')->get();
+
+        // $data->marks = $marks;
+        // dd($data);
+
+        return View('university-administration.pages.conference-submissions-table', ['data' => $data, 'marks' => $marks]);
     }
 
     public function addReviewerInSubmissionPaper(Request $request, $id)
@@ -242,12 +250,5 @@ class UniversityAdministrationController extends Controller
         }
     }
 
-    public function showMarking(){
-        $conf = DB::table('conferences')->where('');
-
-        $marking = DB::table('markings')->join('submissions', 'submissions.id', '=', 'markings.marking_submission_id')
-        ->select('submissions.submissions_conference_id')->get();
-
-        dd($marking);
-    }
+    
 }

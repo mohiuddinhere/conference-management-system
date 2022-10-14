@@ -67,7 +67,7 @@ Route::post('update-admin/{id}', [UniversityAdministrationController::class, 'up
 Route::get('uni-admin/delete-admin-acc/{id}', [UniversityAdministrationController::class, 'deleteAdmin']);
 Route::get('uni-admin/conference/table/submissions/{id}', [UniversityAdministrationController::class, 'conferenceSubmissionsView']);
 Route::post('uni_admin/add-reviewer/{id}', [UniversityAdministrationController::class, 'addReviewerInSubmissionPaper']);
-Route::get('uni-admin/marking/table/{id}', [UniversityAdministrationController::class, 'showMarking']);
+
 
 //Reviewer
 Route::get('reviewer/dashboard', [ReviewerController::class, 'reviewerDashbordView']);

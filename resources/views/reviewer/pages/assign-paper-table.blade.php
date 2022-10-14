@@ -61,7 +61,7 @@
                                 <td>{{ Str::limit($d->msg, 30) }}</td>
                                 <td>
                                     <a href="{{ url('paper-download/'.$d->submission_id) }}" class="btn btn-info">Download</a>
-                                    <a href="{{ url('review-submission-paper/'.$d->submission_id) }}" class="btn btn-info">View</a>
+                                    <a href="{{ url('review-submission-paper/'.$d->submission_id) }}" class="btn btn-info mt-1">View</a>
                                 </td>
                             </tr>
                             @endforeach
