@@ -38,7 +38,8 @@
                                         <td>{{ $c->submission_deadline }}</td>
                                         <td>
                                             <a href="{{ url('uni-admin/conference/table/submissions/'.$c->id) }}" class="btn btn-info">Submission List</a>
-                                            <a href="{{ url('uni-admin/edit-conference/'.$c->id) }}" class="btn btn-info">Edit</a>
+                                            <a href="{{ url('uni-admin/edit-conference/'.$c->id) }}" class="btn btn-info mt-1">Edit</a>
+                    
                                         </td>
                                     </tr>
                                     @endforeach

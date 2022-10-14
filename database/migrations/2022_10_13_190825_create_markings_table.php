@@ -20,6 +20,8 @@ return new class extends Migration
             $table->foreign('marking_submission_id')->references('id')->on('submissions');
             $table->unsignedBigInteger('marking_review_id');
             $table->foreign('marking_review_id')->references('id')->on('reviews');
+            $table->unsignedBigInteger('marking_conference_id');
+            $table->foreign('marking_conference_id')->references('id')->on('conferences');
             $table->timestamps();
         });
     }
