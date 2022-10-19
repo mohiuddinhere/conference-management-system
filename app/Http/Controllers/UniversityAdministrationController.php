@@ -210,19 +210,23 @@ class UniversityAdministrationController extends Controller
             ->where('submissions_conference_id', '=', $id)
             ->join('users', 'users.id', '=', 'submissions.user_id')
             ->join('tracks', 'tracks.id', '=', 'submissions.track_id')
+            ->join('markings', 'markings.marking_conference_id', DB::raw($id))
             ->join('conferences', 'conferences.id', '=', 'submissions.submissions_conference_id')
-            ->select('submissions.id', 'submissions.title', 'submissions.tags', 'users.name as user_name', 'tracks.name as track_name', 'conferences.title as conference_name')
+            ->select('submissions.id', 'submissions.title', 'submissions.tags', 'users.name as user_name', 'tracks.name as track_name', 'conferences.title as conference_name', 'markings.review_status')
             ->get();
 
-        // json_encode($data);
+            
+        // 
 
-        $marks = DB::table('markings')->where('marking_conference_id', '=', $id)
-        ->select('review_status')->get();
+        // $marks = DB::table('markings')->where('marking_conference_id', '=', $id)
+        // ->select('review_status')->get();
+        // print_r(gettype($data));
 
-        // $data->marks = $marks;
-        // dd($data);
+        // $data = json_encode($data);
+        
+        // print_r($data);
 
-        return View('university-administration.pages.conference-submissions-table', ['data' => $data, 'marks' => $marks]);
+        return View('university-administration.pages.conference-submissions-table', ['data' => $data]);
     }
 
     public function addReviewerInSubmissionPaper(Request $request, $id)
