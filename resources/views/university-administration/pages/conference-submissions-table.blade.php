@@ -42,9 +42,7 @@
                     {{ Str::limit($d->tags, 20) }}
                 </td>
                 <td>
-                    @foreach($marks as $m)
-                        {{ $m->review_status }}
-                    @endforeach
+                    {{ $d->review_status }}
                 </td>
                 <td>
                     <a href="#" class="btn btn-info" data-toggle="modal" data-target="#exampleModal{{$d->id}}">Add Reviewer</a>

@@ -69,12 +69,10 @@ class ReviewerController extends Controller
         // ->where('review_submission_id', '=', $submission_id)
         // ->get();
         $conference_id = DB::table('submissions')->where('id', '=', $submission_id)
-        ->select('id')
+        ->select('submissions_conference_id')
         ->first();
-        $conference_id = $conference_id->id;
+        $conference_id = $conference_id->submissions_conference_id;
         $user_id = $r->session()->get('user_id');
-        // dd($conference_id);
-
 
         DB::table('markings')->insert([
             'review_status' => $r->marking,
@@ -83,19 +81,6 @@ class ReviewerController extends Controller
             'marking_conference_id' => $conference_id
         ]);
 
-
-        // if($marking->save()){
-        //     return redirect()->back()->with('success', 'Marking Done');
-        // }
-
-        // $data = Marking::where('marking_review_id', '=', $reviewId)->count();
-
-        // if($data >= 1){
-        //     return redirect()->back()->with('err', 'Marking already done');
-        // }else{
-        //     if($marking->save()){
-        //         return redirect()->back()->with('success', 'Marking Done');
-        //     }
-        // } 
+        return redirect('reviewer/table/assigned-paper');
     }
 }
