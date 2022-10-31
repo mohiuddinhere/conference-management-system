@@ -44,7 +44,7 @@
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" name="password" class="form-control" placeholder="Password">
+                            <input type="text" value="123456" name="password" class="form-control" placeholder="Password">
                         </div>
                         <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Login</button>
                         <div class="social-login-content">

@@ -47,11 +47,11 @@
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" name="password" class="form-control" placeholder="Password">
+                            <input ttype="text" value="123456" name="password" class="form-control" placeholder="Password">
                         </div>
                         <div class="form-group">
                             <label>Confirm Password</label>
-                            <input type="password" name="confirmPassword" class="form-control" placeholder="Password">
+                            <input type="text" value="123456" name="confirmPassword" class="form-control" placeholder="Password">
                         </div>
                         <div class="checkbox">
                             <label>
