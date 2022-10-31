@@ -43,7 +43,7 @@ class AuthorController extends Controller
 
         $request->validate([
 
-            'file' => 'required|mimes:pdf|max:2048',
+            'file' => 'required|mimes:pdf|max:8192',
         ]);
 
         $originalName = $request->file->getClientOriginalName();
