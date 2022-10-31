@@ -24,7 +24,6 @@
                 <th>User Name</th>
                 <th>Track Name</th>
                 <th>Tags</th>
-                <th>Marking</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -40,9 +39,6 @@
                 <td>{{ Str::limit($d->track_name, 20)   }}</td>
                 <td>
                     {{ Str::limit($d->tags, 20) }}
-                </td>
-                <td>
-                    {{ $d->review_status }}
                 </td>
                 <td>
                     <a href="#" class="btn btn-info" data-toggle="modal" data-target="#exampleModal{{$d->id}}">Add Reviewer</a>
