@@ -60,12 +60,12 @@
                         </div>
                         <input type="text" name="user" value="{{ $user }}" style="display: none;">
                         <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Register</button>
-                        <div class="social-login-content">
+                        <!-- <div class="social-login-content">
                             <div class="social-button">
                                 <button type="button" class="btn social facebook btn-flat btn-addon mb-3"><i class="ti-facebook"></i>Register with facebook</button>
                                 <button type="button" class="btn social twitter btn-flat btn-addon mt-2"><i class="ti-twitter"></i>Register with twitter</button>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="register-link m-t-15 text-center">
                             <p>Already have account ? <a href="#"> Sign in</a></p>
                         </div>

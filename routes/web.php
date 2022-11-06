@@ -22,10 +22,11 @@ use App\Http\Controllers\ReviewerController;
 //     return view('welcome');
 // });
 //Admin
+//Create website admin
 Route::get('admin/2iarpwu9',[AdminController::class, 'websiteAdminCreateView']);
 Route::post('admin/2iarpwu9',[AdminController::class, 'websiteAdminCreateStore']);
 
-
+//Main admin work
 Route::get('admin/dashbord',[AdminController::class, 'adminDashbord']);
 Route::get('admin/register/uni-admin', [AdminController::class, 'universityAdminRegister']);
 Route::post('admin/register/uni-admin/add', [AdminController::class, 'universityAdminAdd']);
