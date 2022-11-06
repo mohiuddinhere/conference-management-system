@@ -2,7 +2,7 @@
             <div class="top-left">
                 <div class="navbar-header">
                     <a class="navbar-brand" style="display: inline;" href="./"><img src="{{ asset('images/logo.png') }}" alt="Logo"></a>
-                    <a class="navbar-brand hidden" href="./"><img src="{{ asset('images/logo2.png') }}" alt="Logo"></a>
+                    <a class="navbar-brand hidden" href="uni-admin/dashboard"><img src="{{ asset('images/logo2.png') }}" alt="Logo"></a>
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
