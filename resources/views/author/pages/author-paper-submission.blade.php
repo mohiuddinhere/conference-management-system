@@ -63,7 +63,7 @@
                                 <textarea name="abstract" class="form-control" rows="5" id="comment" class="form-control"></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="">Tags</label>
+                                <label for="">Keyword</label>
                                 <input name="tags" type="text" data-role="tagsinput" class="form-control">
                             </div>
                             <div class="form-group">
