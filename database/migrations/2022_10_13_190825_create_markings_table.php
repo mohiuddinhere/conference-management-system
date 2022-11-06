@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('markings', function (Blueprint $table) {
             $table->id();
+
+            $table->integer('result_adequate');
+            $table->integer('contribution');
+            $table->integer('literature_review');
             $table->string('review_status');
 
             $table->unsignedBigInteger('marking_submission_id');

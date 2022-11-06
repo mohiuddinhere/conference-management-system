@@ -3,7 +3,7 @@
 
 @section('title', 'Reviewer Dashboard')
 
-@section('user_name', $user_name)
+
 
 @section('bodys')
 <div class="animated fadeIn">
@@ -23,12 +23,67 @@
                         <hr />
 
                         <div class="d-flex">
-                            <h3 class="mb-2">Here is the Paper</h3>
-                            <form method="post" action="{{ url('reviewer/mark/'.$data->id) }}" class="ml-auto p-2">
+                            <form method="post" action="{{ url('reviewer/mark/'.$data->id) }}" class="p-2">
                             @csrf
+                                <h4 class="mb-1">Result are adequate</h4> 
+                                <div class="form-check-inline mb-3">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" value="3" name="result" {{ !empty($validate->result_adequate ) && $validate->result_adequate == 3? 'checked' : '' }}> 3
+                                    </label>
+                                    </div>
+                                    <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" value="4" name="result" {{ !empty($validate->result_adequate ) && $validate->result_adequate == 4? 'checked' : '' }}> 4
+                                    </label>
+                                    </div>
+                                    <div class="form-check-inline disabled">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" value="5" name="result" {{ !empty($validate->result_adequate ) && $validate->result_adequate == 5? 'checked' : '' }}> 5
+                                    </label>
+                                </div>
+
+
+                                <h4 class="mb-1">Contribution</h4> 
+                                <div class="form-check-inline mb-3">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" value="3" name="contribution" {{ !empty($validate->contribution ) && $validate->contribution  == 3? 'checked' : '' }}> 3
+                                    </label>
+                                    </div>
+                                    <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" value="4" name="contribution" {{ !empty($validate->contribution ) && $validate->contribution  == 4? 'checked' : '' }}> 4
+                                    </label>
+                                    </div>
+                                    <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" value="5" name="contribution" {{ !empty($validate->contribution ) && $validate->contribution  == 5? 'checked' : '' }}> 5
+                                    </label>
+                                </div>
+
+
+
+
+                                <h4 class="mb-1">Literature Review</h4> 
+                                <div class="form-check-inline mb-3">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" value="3" name="literature" {{ !empty($validate->literature_review ) && $validate->literature_review == 3? 'checked' : '' }}> 3
+                                    </label>
+                                    </div>
+                                    <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" value="4" name="literature" {{ !empty($validate->literature_review ) && $validate->literature_review == 4? 'checked' : '' }}> 4
+                                    </label>
+                                    </div>
+                                    <div class="form-check-inline disabled">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" value="5" name="literature" {{ !empty($validate->literature_review ) && $validate->literature_review == 5? 'checked' : '' }}> 5
+                                    </label>
+                                </div>
+       
+
                                 <div class="d-flex form-group">
                                     <select name="marking" class="form-control">
-                                        <option value="">GIVE REVIEW</option>
+                                        <option value=""> {{ empty($validate)? "GIVE REVIEW" : $validate->review_status }}</option>
                                         <option value="Accepted">Accepted</option>
                                         <option value="PartiallyAccepted">Partially Accepted</option>
                                         <option value="Rejected">Rejected</option>
@@ -46,6 +101,13 @@
                                     </div>
                                 @endif
                             </form>
+                        </div>
+                        <hr />
+                        
+
+
+                        <div class="d-flex">
+                            <h3 class="mb-2">Here is the Paper</h3>
                         </div>
                         
                         <iframe src="{{ asset('./uploads/'.$data->file_name) }}" width="100%" height="550px">
