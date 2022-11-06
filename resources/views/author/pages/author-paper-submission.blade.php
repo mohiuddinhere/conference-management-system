@@ -63,8 +63,9 @@
                                 <textarea name="abstract" class="form-control" rows="5" id="comment" class="form-control"></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="">Keyword</label>
-                                <input name="tags" type="text" data-role="tagsinput" class="form-control">
+                                <label for="">Tags</label><br>
+                                <!-- <input name="tags" type="text" data-role="tagsinput" class="form-control"> -->
+                                <input type="text" name="tags" class="form-control" data-role="tagsinput">
                             </div>
                             <div class="form-group">
                                 <label for="">Upload File</label><br>
