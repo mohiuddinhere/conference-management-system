@@ -50,12 +50,12 @@
                         <div class="social-login-content">
                             <div class="social-button">
                                 <button type="button" class="btn btn-dark btn-flat m-b-30 m-t-30 mb-3">Forgot Password?</button>
-                                <button type="button" class="btn social facebook btn-flat btn-addon mb-3"><i class="ti-facebook"></i>Login with facebook</button>
-                                <button type="button" class="btn social twitter btn-flat btn-addon mt-2"><i class="ti-twitter"></i>Login with twitter</button>
+                                <!-- <button type="button" class="btn social facebook btn-flat btn-addon mb-3"><i class="ti-facebook"></i>Login with facebook</button>
+                                <button type="button" class="btn social twitter btn-flat btn-addon mt-2"><i class="ti-twitter"></i>Login with twitter</button> -->
                             </div>
                         </div>
                         <div class="register-link m-t-15 text-center">
-                            <p>Don't have an account? <a href="#"> Sign up</a></p>
+                            <p>Don't have an account? <a href="{{ url('register/author') }}"> Sign up</a></p>
                         </div>
                     </form>
                 </div>
