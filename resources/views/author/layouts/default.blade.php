@@ -19,7 +19,7 @@
                     <div class="col-sm-12">
                         <div class="page-header float-left">
                             <div class="page-title">
-                                <h1><b>{{ Session::get('user_name')}}</b>  ({{ Session::get('role')}})</h1>
+                                <h1><b>{{ Session::get('user_name')}}</b> ({{ $authorOrcidId }} : {{ Session::get('role')}})</h1>
                             </div>
                         </div>
                     </div>

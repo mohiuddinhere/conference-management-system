@@ -13,6 +13,39 @@ class AuthenticationAuthorizationController extends Controller
         error_log($user);
         return view('auth.pages.create-account', ['user' => $user]);
     }
+
+    public function addAuthor(Request $request){
+        if ($request->user == 'author') {
+            $name = $request->name;
+            $email = $request->email;
+            $password = $request->password;
+            $confirmpassword = $request->confirmPassword;
+
+            //inserting all values to users table
+            if ($password == $confirmpassword) {
+                $password = hash('sha1', $password);
+
+                $id = DB::table('users')->insert([
+                    "name" => $name,
+                    "email" => $email,
+                    "password" => $password,
+                    "role" => $request->user
+                ]);
+            }
+
+            // getting user id from the users table
+            $userId = DB::table('users')->where('email', $email)->value('id');
+            // dd($userId);
+
+            $dataInsert = DB::table('unique_identifiers')->insert([
+                'users_uniqueIdentifier_id' => $userId,
+                'author_orcidID' => random_int(1000000000000000, 9999999999999999)
+            ]);
+
+        }
+        return redirect('login');
+    }
+
     public function addUser(Request $request)
     {
         // dd($user);
