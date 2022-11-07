@@ -49,7 +49,7 @@ class AuthenticationAuthorizationController extends Controller
     public function addUser(Request $request)
     {
         // dd($user);
-        if ($request->user == 'uni_admin' || $request->user == 'author' || $request->user ==  'reviewer') {
+        if ($request->user == 'uni_admin' || $request->user ==  'reviewer') {
             $name = $request->name;
             $email = $request->email;
             $password = $request->password;
