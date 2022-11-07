@@ -49,38 +49,53 @@ class ReviewerController extends Controller
 
     public function reviewSubmissionPaper(Request $request, $id)
     {
-        $user_name = $request->session()->get('user_name');
         $data = DB::table('submissions')->where('id', '=', $id)->first();
+
+        $user_id = $request->session()->get('user_id');
+        $validate = DB::table('markings')
+            ->where('marking_submission_id', '=', $id)
+            ->where('marking_review_user_id', '=', $user_id)
+            ->first();
+        // dd($validate);
+
         return view(
             'reviewer.pages.review-submission-paper',
             [
                 'data' => $data,
-                'user_name' => $user_name
+                'validate' => $validate
+
             ]
         );
     }
 
-    public function reviewMark(Request $r, $submission_id){
-        // $data = DB::table('reviews')
-        // ->join('submissions', function($join) use ($submission_id) {
-        //     $join->where('submissions.id', $submission_id);
-        //  })
-        // ->select('reviews.review_user_id', 'submissions.submissions_conference_id')
-        // ->where('review_submission_id', '=', $submission_id)
-        // ->get();
+    public function reviewMark(Request $r, $submission_id)
+    {
+        // dd($r);
         $conference_id = DB::table('submissions')->where('id', '=', $submission_id)
-        ->select('submissions_conference_id')
-        ->first();
+            ->select('submissions_conference_id')
+            ->first();
         $conference_id = $conference_id->submissions_conference_id;
         $user_id = $r->session()->get('user_id');
 
-        DB::table('markings')->insert([
-            'review_status' => $r->marking,
-            'marking_submission_id' => $submission_id,
-            'marking_review_user_id' => $user_id,
-            'marking_conference_id' => $conference_id
-        ]);
+        $validate = DB::table('markings')
+            ->where('marking_submission_id', '=', $submission_id)
+            ->where('marking_review_user_id', '=', $user_id)
+            ->count();
 
-        return redirect('reviewer/table/assigned-paper');
+        if ($validate == 0) {
+            DB::table('markings')->insert([
+                'review_status' => $r->marking,
+                'result_adequate' => $r->result,
+                'contribution' => $r->contribution ,
+                'literature_review' => $r->literature,
+                'marking_submission_id' => $submission_id,
+                'marking_review_user_id' => $user_id,
+                'marking_conference_id' => $conference_id
+            ]);
+
+            return redirect('reviewer/table/assigned-paper');
+        } else {
+            echo 'You already review this paper.';
+        }
     }
 }

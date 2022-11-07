@@ -4,7 +4,7 @@
             <ul class="nav navbar-nav">
                 <li class="menu-title">Tables</li><!-- /.menu-title -->
                 <li>
-                    <a href="{{ url('reviewer/table/assigned-paper') }}" class="dropdown-toggle"> <i class="menu-icon fa fa-tasks"></i>Assigned Papery</a>
+                    <a href="{{ url('reviewer/table/assigned-paper') }}" class="dropdown-toggle"> <i class="menu-icon fa fa-tasks"></i>Assigned Papers</a>
                 </li>
                 <li>
                     <a href="{{ url('reviewer/tables/conference') }}" class="dropdown-toggle"> <i class="menu-icon fa fa-tasks"></i>Conference</a>
