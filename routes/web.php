@@ -32,7 +32,8 @@ Route::post('admin/2iarpwu9', [AdminController::class, 'websiteAdminCreateStore'
 
 //register user
 Route::get('register/{user}', [AuthenticationAuthorizationController::class, 'createAccount']);
-Route::post('register/author', [AuthenticationAuthorizationController::class, 'addUser']);
+// Route::post('register/admin', [AuthenticationAuthorizationController::class, 'addUser']);
+Route::post('register/author', [AuthenticationAuthorizationController::class, 'addAuthor']);
 Route::post('register/reviewer', [AuthenticationAuthorizationController::class, 'addUser']);
 
 //login

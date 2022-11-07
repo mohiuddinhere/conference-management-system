@@ -8,9 +8,13 @@ use Illuminate\Support\Facades\DB;
 class AuthorController extends Controller
 {
 
-    public function authorDashbordView()
+    public function authorDashbordView(Request $r)
     {
-        return view('author.pages.author-dashbord');
+        $user_id = $r->session()->get('user_id');
+        $authorOrcidId = DB::table('unique_identifiers')->where('users_uniqueIdentifier_id', $user_id)->value('author_orcidID');
+        // dd($authorOrcidId);
+
+        return view('author.pages.author-dashbord', ['authorOrcidId' => $authorOrcidId]);
     }
 
     public function availableConferenceView()
