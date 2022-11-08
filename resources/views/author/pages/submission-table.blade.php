@@ -11,7 +11,7 @@
                 <th>Conferences Title</th>
                 <th>Title </th>
                 <th>Abstract</th>
-                <th>Tags</th>
+                <th>Keyword</th>
                 <th>Track Name</th>
                 <th>File</th>
                 <th>Action</th>
