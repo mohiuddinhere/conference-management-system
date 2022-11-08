@@ -13,8 +13,9 @@ class AuthorController extends Controller
         $user_id = $r->session()->get('user_id');
         $authorOrcidId = DB::table('unique_identifiers')->where('users_uniqueIdentifier_id', $user_id)->value('author_orcidID');
         // dd($authorOrcidId);
-
-        return view('author.pages.author-dashbord', ['authorOrcidId' => $authorOrcidId]);
+        session()->put('authorOrcidId', $authorOrcidId);
+        
+        return view('author.pages.author-dashbord');
     }
 
     public function availableConferenceView()
