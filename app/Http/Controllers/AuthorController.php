@@ -14,7 +14,7 @@ class AuthorController extends Controller
         $authorOrcidId = DB::table('unique_identifiers')->where('users_uniqueIdentifier_id', $user_id)->value('author_orcidID');
         // dd($authorOrcidId);
         session()->put('authorOrcidId', $authorOrcidId);
-        
+
         return view('author.pages.author-dashbord');
     }
 
@@ -42,7 +42,7 @@ class AuthorController extends Controller
         return view('author.pages.author-paper-submission', ['submission_id' => $id, 'data' => $data]);
     }
 
-    public function authorPaperSubmissionStore(Request $request)
+    public function authorPaperSubmissionStore(Request $request, $id)
     {
         // dd($request->file->getClientOriginalName());
 
@@ -63,6 +63,11 @@ class AuthorController extends Controller
 
         $id = DB::table('tracks')->where('id', '=', $track)->first();
         $conference_id = $id->conference_id;
+
+        $author_names = $request->author_name;
+        $author_emails = $request->author_email;
+        $author_orcidids = $request->author_orcidid;
+
         DB::table('submissions')->insert([
             'title' => $title,
             'abstract' => $abstract,
@@ -73,7 +78,51 @@ class AuthorController extends Controller
             'user_id' => $user_id
         ]);
 
-        return back()->with('success', 'You have successfully upload file.')->with('file', $fileName);
+        $submission_id = DB::table('submissions')->latest('id')->select('id')->first();
+
+
+        $isValid = array();
+        for ($i = 0; $i < count($author_orcidids); $i++) {
+            $data = DB::table('unique_identifiers')
+                ->join('users', 'unique_identifiers.users_uniqueIdentifier_id', '=', 'users.id')
+                ->where('unique_identifiers.author_orcidID', $author_orcidids[$i])
+                ->where('users.email', $author_emails[$i])
+                ->get();
+
+            if (count($data) == 0) {
+                array_push($isValid, 0);
+                break;
+            } else {
+                array_push($isValid, 1);
+            }
+        }
+
+        $flag = false;
+        for ($i = 0; $i < count($isValid); $i++) {
+            if ($isValid[$i] == 0) {
+                $flag = false;
+                DB::table('submissions')->where('id', '=', $submission_id->id)->delete();
+                return back()->with('error', 'Please use valid email and orcid id.');
+                break;
+            } else {
+                $flag = true;
+            }
+        }
+        // dd($flag);
+
+
+        if ($flag == true) {
+            for ($i = 0; $i < count($author_names); $i++) {
+                DB::table('submission_teams')->insert([
+                    'name' => $author_names[$i],
+                    'submission_teams_email' => $author_emails[$i],
+                    'submission_teams_orcidID' => $author_orcidids[$i],
+                    'submission_paper_id' => $submission_id->id,
+                ]);
+            }
+            return back()->with('success', 'You have successfully upload file.')->with('file', $fileName);
+        }
+        
     }
 
     public function submissionTableView(Request $request)

@@ -91,7 +91,7 @@ class AuthenticationAuthorizationController extends Controller
         $request->session()->put('role', $role);
 
         if ($role == 'admin') {
-            return redirect('admin/dashbord');
+            return redirect('admin/dashboard');
         } elseif ($role == 'uni_admin') {
             return redirect('uni-admin/dashboard');
         } elseif ($role == 'author') {

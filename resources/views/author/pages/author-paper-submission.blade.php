@@ -43,6 +43,11 @@
                             {{ Session::get('success') }}
                         </div>
                         @endif
+                        @if (Session::has('error'))
+                        <div class="alert alert-danger">
+                            {{ Session::get('error') }}
+                        </div>
+                        @endif
                         <form method="POST" action="{{ url('author/submission/'.$submission_id) }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
@@ -77,9 +82,9 @@
                                 <div id="show_item">
                                     <div class="row">
                                         <div class="col mb-3 d-flex">
-                                            <input type="text" name="author_name[]" class="form-control mr-2" placeholder="Author Name">
-                                            <input type="text" name="author_email[]" class="form-control mr-2" placeholder="Author Email">
-                                            <input type="text" name="author_orcidid[]" class="form-control" placeholder="Author OrcidID">
+                                            <input type="text" name="author_name[]" class="form-control mr-2" placeholder="Author Name" required>
+                                            <input type="email" name="author_email[]" class="form-control mr-2" placeholder="Author Email" required>
+                                            <input type="text" name="author_orcidid[]" class="form-control" placeholder="Author OrcidID" required>
                                         </div>
                                         <div class="col-md-2 mb-3 d-grid ">
                                             <button class="btn btn-success add_item_button"><i class="fa-solid fa-plus"></i></button>

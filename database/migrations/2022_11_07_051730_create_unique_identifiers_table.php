@@ -15,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('unique_identifiers', function (Blueprint $table) {
             $table->id();
+
             $table->unsignedBigInteger('users_uniqueIdentifier_id');
             $table->foreign('users_uniqueIdentifier_id')->references('id')->on('users');
-            $table->unsignedBigInteger('author_orcidID');
+
+            $table->unsignedBigInteger('author_orcidID')->index();
+
             $table->timestamps();
         });
     }
