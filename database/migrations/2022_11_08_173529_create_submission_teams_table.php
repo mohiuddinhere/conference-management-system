@@ -16,9 +16,14 @@ return new class extends Migration
         Schema::create('submission_teams', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->
-            $table->foreign('submission_teams_orcidId')->references('author_orcidID')->on('unique_identifiers');
-            $table->unsignedBigInteger('submission_teams_orcidId');
+            $table->string('submission_teams_email');
+
+            $table->unsignedBigInteger('submission_teams_orcidID');
+            $table->foreign('submission_teams_orcidID')->references('author_orcidID')->on('unique_identifiers');
+            
+            $table->unsignedBigInteger('submission_paper_id');
+            $table->foreign('submission_paper_id')->references('id')->on('submissions');
+            
             $table->timestamps();
         });
     }
