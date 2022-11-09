@@ -1,7 +1,7 @@
 @extends('admin.layouts.default')
 
 
-@section('title', 'Conference Admin Table')
+@section('title', 'Auther Admin Table')
 
 @section('bodys')
 
@@ -40,11 +40,10 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Admin Name</th>
+                                <th>Auther Name</th>
                                 <th>Email</th>
                                 <th>Created At</th>
                                 <th>Updated At</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,9 +58,6 @@
                                 </td>
                                 <td>{{ $d->created_at }}</td>
                                 <td>{{ $d->updated_at }}</td>
-                                <td>
-                                    <a href="{{ url('edit-conference/'.$d->id) }}" class="btn btn-info">Edit</a>
-                                </td>
                             </tr>
                             @endforeach
                         </tbody>
