@@ -128,23 +128,20 @@ class AuthorController extends Controller
     public function submissionTableView(Request $request)
     {
         $user_id = $request->session()->get('user_id');
-        $data = DB::table('submissions')
-            ->join('tracks', 'tracks.id', '=', 'submissions.track_id')
-            ->join('conferences', 'conferences.id', '=', 'submissions.submissions_conference_id')
-            ->select('submissions.id', 'submissions.title', 'submissions.abstract', 'submissions.tags', 'submissions.file_name', 'tracks.name as tracks_name', 'conferences.title as conferences_title')
-            ->where('user_id', '=', $user_id)
-            ->get();
-
-        // $conference = array();
-        // foreach ($data as $d) {
-        //     $conference_data = DB::table('conferences')->where('id', '=', $d->conference_id)->get();
-        //     array_push($conference, $conference_data);
-        // }
-        // $a = array_combine($data, $conference);
-
+        $data = DB::table('unique_identifiers')
+        ->join('submission_teams', 'unique_identifiers.author_orcidID' , '=', 'submission_teams.submission_teams_orcidID')
+        ->join('submissions', 'submissions.id', '=', 'submission_teams.submission_paper_id')
+        ->join('conferences', 'conferences.id', '=', 'submissions.submissions_conference_id')
+        ->join('tracks', 'tracks.id', '=', 'submissions.track_id')
+        ->where('users_uniqueIdentifier_id', '=', $user_id)
+        ->select('conferences.title as conferences_title', 'submissions.title as title', 'abstract', 'tags', 'tracks.name as tracks_name', 'file_name', 'submissions.id as submission_id')
+        ->get();
         return view('author.pages.submission-table', [
             'data' => $data,
         ]);
-        // dd($data);
+    }
+
+    public function submissionPaperUpdate($id){
+        echo $id;
     }
 }

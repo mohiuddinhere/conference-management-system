@@ -65,6 +65,8 @@ Route::middleware(['isLogin'])->group(function () {
         Route::get('author/conference/{id}', [AuthorController::class, 'authorPaperConference']);
         Route::post('author/submission/{id}', [AuthorController::class, 'authorPaperSubmissionStore']);
         Route::get('author/tables/submission', [AuthorController::class, 'submissionTableView']);
+        Route::get('author/submission/update/{id}', [AuthorController::class, 'submissionPaperUpdate']);
+        
     });
 
 
