@@ -54,6 +54,8 @@ Route::middleware(['isLogin'])->group(function () {
         Route::get('admin/tables/uni-admin', [AdminController::class, 'universityAdminTableView']);
         Route::get('admin/tables/university', [AdminController::class, 'universityTableView']);
         Route::get('admin/tables/conference', [AdminController::class, 'conferenceTableView']);
+        Route::get('admin/tables/author', [AdminController::class, 'authorTableView']);
+        Route::get('admin/tables/reviewer', [AdminController::class, 'reviewerTableView']);
     });
 
 

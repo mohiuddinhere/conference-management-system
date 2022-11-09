@@ -26,14 +26,16 @@
 
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 </head>
+@extends('admin.layouts.default')
+@section('bodys')
 <body class="bg-white">
 
     <div class="sufee-login d-flex align-content-center flex-wrap">
         <div class="container">
-            <div class="login-content shadow p-3 mb-5 bg-white rounded">
-                <div class="login-logo">
+            <div class="login-content shadow p-3 bg-white rounded">
+                {{-- <div class="login-logo">
                     <img class="align-content" src="{{ asset('images/logo.png') }}" alt="">
-                </div>
+                </div> --}}
                 <div class="login-form">
                     <form method="POST" action="{{ url('admin/register/uni-admin/add') }}">
                         @csrf
@@ -81,7 +83,7 @@
             </div>
         </div>
     </div>
-
+    @stop
     <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>

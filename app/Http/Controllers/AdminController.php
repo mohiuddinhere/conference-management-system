@@ -65,30 +65,37 @@ class AdminController extends Controller
         $universityName = $request->univarsity_name;
         $universityAddress = $request->address;
 
-        if ($pass == $confirmPass) {
-            DB::table('users')->insert([
-                'name' => $name,
-                'email' => $email,
-                'password' => hash('sha1', $pass),
-                'role' => 'uni_admin'
-            ]);
+        if (empty($name) || empty($email) || empty($pass) || empty($confirmPass) || empty($universityName) || empty($universityAddress)) {
+            echo 'Fill all value';
+        } else {
+            if ($pass == $confirmPass) {
+                DB::table('users')->insert([
+                    'name' => $name,
+                    'email' => $email,
+                    'password' => hash('sha1', $pass),
+                    'role' => 'uni_admin'
+                ]);
 
-            $user_id = DB::table('users')->where('email', '=', $email)->select('id')->first();
+                $user_id = DB::table('users')->where('email', '=', $email)->select('id')->first();
 
-            DB::table('universities')->insert([
-                'user_id' => $user_id->id,
-                'name' => $universityName,
-                'address' => $universityAddress
-            ]);
+                DB::table('universities')->insert([
+                    'user_id' => $user_id->id,
+                    'name' => $universityName,
+                    'address' => $universityAddress
+                ]);
 
-            $university_id = DB::table('universities')->where('name', '=', $universityName)->select('id')->first();
+                $university_id = DB::table('universities')->where('name', '=', $universityName)->select('id')->first();
 
-            DB::table('university_admins')->insert([
-                'user_id' => $user_id->id,
-                'university_id' => $university_id->id,
-            ]);
+                DB::table('university_admins')->insert([
+                    'user_id' => $user_id->id,
+                    'university_id' => $university_id->id,
+                ]);
+
+                return redirect('admin/tables/uni-admin');
+            } else {
+                echo '!password';
+            }
         }
-        return redirect('admin/tables/uni-admin');
     }
     //Register End
 
@@ -141,6 +148,44 @@ class AdminController extends Controller
         // dd($data);
         return view(
             'admin.pages.conference-table',
+            [
+                'total_user' => $totalUser,
+                'total_conference' => $totalConference,
+                'total_universities' => $totalUniversities,
+                'data' => $data
+            ]
+        );
+    }
+
+    public function authorTableView()
+    {
+        $data = DB::table('users')->where('role', '=', 'author')->get();
+        // dd($data);
+        $totalUser = DB::table('users')->count();
+        $totalConference = DB::table('conferences')->count();
+        $totalUniversities = DB::table('universities')->count();
+
+        return view(
+            'admin.pages.author-table',
+            [
+                'total_user' => $totalUser,
+                'total_conference' => $totalConference,
+                'total_universities' => $totalUniversities,
+                'data' => $data
+            ]
+        );
+    }
+
+    public function reviewerTableView()
+    {
+        $data = DB::table('users')->where('role', '=', 'reviewer')->get();
+        // dd($data);
+        $totalUser = DB::table('users')->count();
+        $totalConference = DB::table('conferences')->count();
+        $totalUniversities = DB::table('universities')->count();
+
+        return view(
+            'admin.pages.reviewer-table',
             [
                 'total_user' => $totalUser,
                 'total_conference' => $totalConference,
