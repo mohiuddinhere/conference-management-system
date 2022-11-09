@@ -13,7 +13,7 @@
                 <th>Abstract</th>
                 <th>Keyword</th>
                 <th>Track Name</th>
-                <th>File</th>
+                {{-- <th>File</th> --}}
                 <th>Action</th>
             </tr>
         </thead>
@@ -21,25 +21,25 @@
             @foreach($data as $d)
             <tr>
                 <td>
-                    {{ $d->conferences_title }}
+                    {{ Str::limit($d->conferences_title, 30) }}
                 </td>
                 <td>
-                    {{ $d->title }}
+                    {{ Str::limit($d->title, 30) }}
                 </td>
                 <td>
-                    {{ Str::limit($d->abstract, 50)  }}
+                    {{ Str::limit($d->abstract, 30)  }}
                 </td>
                 <td>
-                    {{ Str::limit($d->tags, 50)  }}
+                    {{ Str::limit($d->tags, 30)  }}
                 </td>
                 <td>
                     {{ $d->tracks_name }}
                 </td>
-                <td>
+                {{-- <td>
                     {{ Str::limit($d->file_name, 12) }}
-                </td>
+                </td> --}}
                 <td>
-                    <a href="{{ url('author/submission/delete/'.$d->id) }}" class="btn btn-info">Delete</a>
+                    <a href="{{ url('author/submission/update/'.$d->submission_id) }}" class="btn btn-info">update</a>
                 </td>
             </tr>
             @endforeach
