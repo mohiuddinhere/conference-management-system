@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('result_adequate');
             $table->integer('contribution');
             $table->integer('literature_review');
-            $table->string('review_status');
+            $table->string('review_status')->index();
 
             $table->unsignedBigInteger('marking_submission_id');
             $table->foreign('marking_submission_id')->references('id')->on('submissions');
