@@ -144,4 +144,18 @@ class AuthorController extends Controller
     public function submissionPaperUpdate($id){
         echo $id;
     }
+
+    public function submissionResults(){
+        $id = session()->get('user_id');
+        $data = DB::table('submissions')
+        ->where('submissions.user_id', '=', $id)
+        ->join('conferences', 'conferences.id', '=', 'submissions.submissions_conference_id')
+        ->join('universities', 'universities.id', '=', 'conferences.university_id')
+        ->join('results', 'results.submission_result_id', '=', 'submissions.id')
+        ->select('submissions.title as submissionTitle', 'conferences.title as conferenceTitle', 'universities.name as universityName', 'conferences.conference_date as conferenceDate', 'results.review_status as reviewStatus')
+        ->get();
+        // dd($data);
+
+        return view('author.pages.author-paper-result', ['data' => $data]);
+    }
 }
