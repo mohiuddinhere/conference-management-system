@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\AuthenticationAuthorizationController;
 use App\Http\Controllers\UniversityAdministrationController;
 use App\Http\Controllers\ReviewerController;
+use App\Http\Controllers\Conference;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,9 @@ Route::post('register/reviewer', [AuthenticationAuthorizationController::class, 
 //login
 Route::get('login', [AuthenticationAuthorizationController::class, 'loginView']);
 Route::post('login', [AuthenticationAuthorizationController::class, 'login']);
+
+//Conference view
+Route::get('conference/{conference_id}', [Conference::class, 'conferenceView']);
 
 Route::middleware(['isLogin'])->group(function () {
 

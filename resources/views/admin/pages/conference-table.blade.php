@@ -41,7 +41,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Address</th>
+                                <th>Deadline</th>
                                 <th>Created At</th>
                                 <th>Updated At</th>
                                 <th>Action</th>
@@ -52,7 +52,7 @@
                             <tr>
                                 <td>{{ $d->id }}</td>
                                 <td>
-                                    {{ $d->title }}
+                                    <a href="{{ url('conference/'.$d->id) }}"> {{ $d->title }} </a> 
                                 </td>
                                 <td>
                                     {{ $d->submission_deadline }}
