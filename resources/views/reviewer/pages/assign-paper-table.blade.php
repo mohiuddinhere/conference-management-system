@@ -44,7 +44,7 @@
                                 <th>#</th>
                                 <th>Paper Title</th>
                                 <th>Keywords</th>
-                                <th>Massage From University</th>
+                                <th>Message From University</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
