@@ -39,6 +39,14 @@ class AdminController extends Controller
         $totalConference = DB::table('conferences')->count();
         $totalUniversities = DB::table('universities')->count();
 
+        // $chart = DB::table('users')
+        // ->groupBy('created_at')
+        // ->havingBetween('created_at', [5, 15])
+        // ->selectRaw('count(id) as number_of_user, created_at')
+        // ->get();
+        // dd($chart);
+
+
         return view(
             'admin.pages.admin-dashbord',
             [
