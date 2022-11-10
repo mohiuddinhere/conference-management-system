@@ -21,7 +21,7 @@
             <tr>
                 <td>{{ $d->id }}</td>
                 <td>
-                    {{ $d->title  }}
+                    <a href="{{ url('conference/'.$d->id) }}"> {{ $d->title }} </a> 
                 </td>
                 <td>{{ $d->name  }}</td>
                 <td>
