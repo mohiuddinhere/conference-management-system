@@ -13,7 +13,7 @@
                     <a href="{{ url('author/tables/submission') }}" class="dropdown-toggle"> <i class="menu-icon fa fa-tasks"></i>Submissions</a>
                 </li>
                 <li>
-                    <a href="{{ url('author/tables/submission/accept') }}"> <i class="menu-icon fa-solid fa-feather"></i>Results</a>
+                    <a href="{{ url('author/tables/submission/results') }}"> <i class="menu-icon fa-solid fa-feather"></i>Results</a>
                 </li>
                 <!-- <li>
                     <a href="{{ url('author/tables/submission/reject') }}"> <i class="menu-icon fa-solid fa-magnifying-glass"></i>Rejected Paper</a>
