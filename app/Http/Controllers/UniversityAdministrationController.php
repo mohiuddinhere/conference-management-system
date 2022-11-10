@@ -243,5 +243,46 @@ class UniversityAdministrationController extends Controller
         }
     }
 
-    
+    public function showMarkingList($id){
+        $titleNameData = DB::table('markings')
+        ->where('marking_submission_id', '=', $id)
+        ->join('submissions', 'submissions.id', '=', 'markings.marking_submission_id')
+        ->join('tracks', 'tracks.id', '=', 'submissions.track_id')
+        ->select('submissions.id as submission_id', 'submissions.title as submission_title', 'tracks.name as track_name', 'markings.result_adequate as result_adequate', 'markings.contribution as contribution', 'markings.literature_review as literature_review')
+        ->first();
+
+
+        $reviewerName = DB::table('markings')
+        ->where('marking_submission_id', '=', $id)
+        ->join('users', 'users.id', '=', 'markings.marking_review_user_id')
+        ->select('users.name as reviewer_name', 'markings.result_adequate as result_adequate', 'markings.contribution as contribution', 'markings.literature_review as literature_review', 'markings.review_status as review_status')
+        ->get();
+
+        //dd($reviewerName);
+
+        return view('university-administration.pages.marking-list', ['titleNameData' => $titleNameData, 'reviewerName' => $reviewerName]);
+    }
+
+    public function storeMarking(Request $r, $id){
+        $finalMarking = $r->radio;
+        $submissionId = DB::table('submissions')
+        ->where('submissions.id', '=', $id)
+        ->select('id')
+        ->first();
+
+        // dd($submission);
+
+        $temp = DB::table('results')->insert([
+            'submission_result_id' => $submissionId->id,
+            'review_status' => $finalMarking
+        ]);
+        // dd($temp);
+
+        $conferenceId = Db::table('submissions')
+        ->where('submissions.id', '=', $id)
+        ->select('submissions_conference_id')
+        ->first();
+        
+        return redirect('uni-admin/conference/table/submissions/'.$conferenceId->submissions_conference_id);
+    }
 }
