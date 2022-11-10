@@ -17,8 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('submission_result_id');
             $table->foreign('submission_result_id')->references('id')->on('submissions');
-            $table->string('marking_result_review_status');
-            $table->foreign('marking_result_review_status')->references('review_status')->on('markings');
+            $table->string('review_status');
             $table->timestamps();
         });
     }

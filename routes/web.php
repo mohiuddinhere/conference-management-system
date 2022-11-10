@@ -72,7 +72,7 @@ Route::middleware(['isLogin'])->group(function () {
         Route::post('author/submission/{id}', [AuthorController::class, 'authorPaperSubmissionStore']);
         Route::get('author/tables/submission', [AuthorController::class, 'submissionTableView']);
         Route::get('author/submission/update/{id}', [AuthorController::class, 'submissionPaperUpdate']);
-        
+        Route::get('author/tables/submission/results', [AuthorController::class, 'submissionResults']);
     });
 
 
@@ -92,6 +92,8 @@ Route::middleware(['isLogin'])->group(function () {
         Route::get('uni-admin/delete-admin-acc/{id}', [UniversityAdministrationController::class, 'deleteAdmin']);
         Route::get('uni-admin/conference/table/submissions/{id}', [UniversityAdministrationController::class, 'conferenceSubmissionsView']);
         Route::post('uni_admin/add-reviewer/{id}', [UniversityAdministrationController::class, 'addReviewerInSubmissionPaper']);
+        Route::get('uni_admin/marking-list/{id}', [UniversityAdministrationController::class, 'showMarkingList']);
+        Route::post('store-marking/{id}', [UniversityAdministrationController::class, 'storeMarking']);
     });
 
 

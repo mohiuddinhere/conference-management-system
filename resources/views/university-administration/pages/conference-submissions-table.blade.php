@@ -73,6 +73,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <a class="btn btn-primary mt-2" href="{{ url('uni_admin/marking-list/'.$d->id) }}">Add Outcome</a>
                 </td>
             </tr>
             @endforeach
