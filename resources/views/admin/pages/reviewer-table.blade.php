@@ -40,7 +40,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Auther Name</th>
+                                <th>Author Name</th>
                                 <th>Email</th>
                                 <th>Created At</th>
                                 <th>Updated At</th>

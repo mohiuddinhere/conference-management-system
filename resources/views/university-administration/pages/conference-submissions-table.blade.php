@@ -65,7 +65,7 @@
                                         </div>
 
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Assigning Reviewer</button>
+                                        <button type="submit" class="btn btn-primary">Assign Reviewer</button>
 
                                         <div class="modal-footer mt-4"></div>
                                     </form>
