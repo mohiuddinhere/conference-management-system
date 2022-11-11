@@ -41,6 +41,10 @@
                         <div>
                             <canvas id="myChart"></canvas>
                         </div>
+                        <script>
+                            const chart = @json($chart);
+                        </script>
+                        
                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                         <script src="{{ asset('assets/js/chart.js') }}"></script>
                         <!--  -->
