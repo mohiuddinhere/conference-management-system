@@ -146,16 +146,25 @@ class AuthorController extends Controller
     }
 
     public function submissionResults(){
-        $id = session()->get('user_id');
-        $data = DB::table('submissions')
-        ->where('submissions.user_id', '=', $id)
+        // $id = session()->get('user_id');
+        // $data = DB::table('submissions')
+        // ->where('submissions.user_id', '=', $id)
+        // ->join('conferences', 'conferences.id', '=', 'submissions.submissions_conference_id')
+        // ->join('universities', 'universities.id', '=', 'conferences.university_id')
+        // ->join('results', 'results.submission_result_id', '=', 'submissions.id')
+        // ->select('submissions.title as submissionTitle', 'conferences.title as conferenceTitle', 'universities.name as universityName', 'conferences.conference_date as conferenceDate', 'results.review_status as reviewStatus')
+        // ->get();
+        // dd($data);
+        $authorOrcidId = Session()->get('authorOrcidId');
+        $data = DB::table('submission_teams')
+        ->where('submission_teams.submission_teams_orcidID', '=', $authorOrcidId)
+        ->join('submissions', 'submissions.id', '=', 'submission_teams.submission_paper_id')
         ->join('conferences', 'conferences.id', '=', 'submissions.submissions_conference_id')
         ->join('universities', 'universities.id', '=', 'conferences.university_id')
         ->join('results', 'results.submission_result_id', '=', 'submissions.id')
         ->select('submissions.title as submissionTitle', 'conferences.title as conferenceTitle', 'universities.name as universityName', 'conferences.conference_date as conferenceDate', 'results.review_status as reviewStatus')
         ->get();
         // dd($data);
-
         return view('author.pages.author-paper-result', ['data' => $data]);
     }
 }
