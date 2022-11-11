@@ -39,10 +39,20 @@ class AdminController extends Controller
         $totalConference = DB::table('conferences')->count();
         $totalUniversities = DB::table('universities')->count();
 
-        // $chart = DB::table('users')->groupBy(DB::raw('DATE(created_at)'))->select('created_at',DB::raw('COUNT(id) as number'))->get();
-        // $chart = DB::raw('SELECT DATE(created_at),COUNT(id) FROM users GROUP BY DATE(created_at)');
-        // $c = DB::table('users')->selectRaw('select date(created_at),count(*) from users group by date(created_at)');
-        // dd($chart);
+        $user_par_day = array();
+        $chart = DB::select('select date(created_at),count(id) as number from users group by date(created_at)');
+
+        for($i=0; $i<count($chart); $i++){
+            array_push($user_par_day,$chart[$i]->number);
+        }
+        if(count($user_par_day)>=31){
+            unset($user_par_day[0]);
+            $arr2 = array_values($user_par_day);
+            $user_par_day = $arr2;
+        }
+        
+
+        // dd($user_par_day);
 
         // select date(created_at),count(id) 
         // from users 
@@ -53,7 +63,8 @@ class AdminController extends Controller
             [
                 'total_user' => $totalUser,
                 'total_conference' => $totalConference,
-                'total_universities' => $totalUniversities
+                'total_universities' => $totalUniversities,
+                'chart' => $user_par_day
             ]
         );
     }
