@@ -32,7 +32,7 @@
                                     <tr>
                                         <td>{{ $c->id }}</td>
                                         <td>
-                                            {{ $c->title }}
+                                            <a href="{{ url('conference/'.$c->id) }}"> {{ $c->title }} </a>
                                         </td>
                                         <td>{{ $c->conference_date }}</td>
                                         <td>{{ $c->submission_deadline }}</td>
