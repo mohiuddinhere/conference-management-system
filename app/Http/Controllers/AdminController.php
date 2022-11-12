@@ -214,4 +214,15 @@ class AdminController extends Controller
             ]
         );
     }
+    
+    public function adminProfile(){
+        $userId = session()->get('user_id');
+        $data = DB::table('users')
+        ->where('users.id', '=', $userId)
+        ->get();
+
+        // dd($data);
+
+        return view('admin.pages.admin-profile', ['data' => $data]);
+    }
 }
