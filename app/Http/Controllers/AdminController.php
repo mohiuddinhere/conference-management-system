@@ -42,29 +42,57 @@ class AdminController extends Controller
         $user_par_day = array();
         $chart = DB::select('select date(created_at),count(id) as number from users group by date(created_at)');
 
-        for($i=0; $i<count($chart); $i++){
-            array_push($user_par_day,$chart[$i]->number);
+        for ($i = 0; $i < count($chart); $i++) {
+            array_push($user_par_day, $chart[$i]->number);
         }
-        if(count($user_par_day)>=31){
+        if (count($user_par_day) >= 31) {
             unset($user_par_day[0]);
             $arr2 = array_values($user_par_day);
             $user_par_day = $arr2;
         }
-        
 
-        // dd($user_par_day);
+
+        $user_traffic_logs = array();
+        $chart = DB::select('select date(created_at),count(id) as number from traffic_logs group by date(created_at)');
+        for ($i = 0; $i < count($chart); $i++) {
+            array_push($user_traffic_logs, $chart[$i]->number);
+        }
+        if (count($user_traffic_logs) >= 31) {
+            unset($user_traffic_logs[0]);
+            $arr2 = array_values($user_traffic_logs);
+            $user_traffic_logs = $arr2;
+        }
+
+        $chart_user = array(0, 0, 0, 0);
+        $chart = DB::select('select role,count(id) as number from users group by role');
+        foreach ($chart as $c) {
+
+            if ($c->role == 'admin') {
+                $chart_user[0] = $c->number;
+            } elseif ($c->role == 'uni_admin') {
+                $chart_user[1] = $c->number;
+            } elseif ($c->role == 'author') {
+                $chart_user[2] = $c->number;
+            } elseif ($c->role == 'reviewer') {
+                $chart_user[3] = $c->number;
+            }
+
+        }
+        // dd($chart_user);
 
         // select date(created_at),count(id) 
         // from users 
         // group by date(created_at)
-        
+
         return view(
             'admin.pages.admin-dashbord',
             [
                 'total_user' => $totalUser,
                 'total_conference' => $totalConference,
                 'total_universities' => $totalUniversities,
-                'chart' => $user_par_day
+                'chart' => $user_par_day,
+                'chart2' => $user_traffic_logs,
+                'chart3' => $chart_user
             ]
         );
     }

@@ -14,7 +14,8 @@ class AuthenticationAuthorizationController extends Controller
         return view('auth.pages.create-account', ['user' => $user]);
     }
 
-    public function addAuthor(Request $request){
+    public function addAuthor(Request $request)
+    {
         if ($request->user == 'author') {
             $name = $request->name;
             $email = $request->email;
@@ -41,7 +42,6 @@ class AuthenticationAuthorizationController extends Controller
                 'users_uniqueIdentifier_id' => $userId,
                 'author_orcidID' => random_int(1000000000000000, 9999999999999999)
             ]);
-
         }
         return redirect('login');
     }
@@ -90,6 +90,12 @@ class AuthenticationAuthorizationController extends Controller
         $request->session()->put('user_name', $user_name);
         $request->session()->put('role', $role);
 
+        DB::table('traffic_logs')->insert(
+            [
+                'user_id' => $id
+            ]
+        );
+
         if ($role == 'admin') {
             return redirect('admin/dashboard');
         } elseif ($role == 'uni_admin') {
@@ -98,6 +104,8 @@ class AuthenticationAuthorizationController extends Controller
             return redirect('author/dashboard');
         } elseif ($role == 'reviewer') {
             return redirect('reviewer/dashboard');
+        } else {
+            echo '!pass && email';
         }
     }
 

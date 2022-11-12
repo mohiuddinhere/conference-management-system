@@ -36,15 +36,30 @@
 
                 <div class="card">
                     <div class="card-body">
-                        
+
                         <!--  -->
-                        <div>
-                            <canvas id="myChart"></canvas>
+                        <div class="d-flex">
+                            <div style="width: 50%">
+                                <canvas id="myChart"></canvas>
+                            </div>
+                            <div style="width: 50%">
+                                <canvas id="myChart2"></canvas>
+                            </div>
                         </div>
+                        <div style="width: 50%" class="mt-5">
+                            <canvas id="myChart3" width="400" height="400"></canvas>
+                        </div>
+
                         <script>
                             const chart = @json($chart);
+                            const chart2 = @json($chart2);
+                            const chart3 = @json($chart3);
                         </script>
+
                         
+
+
+
                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                         <script src="{{ asset('assets/js/chart.js') }}"></script>
                         <!--  -->
