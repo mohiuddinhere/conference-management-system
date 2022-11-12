@@ -26,13 +26,13 @@
                 @csrf
                 <div class="form-group">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" value="accepted" name="radio" id="flexRadioDefault1">
+                        <input class="form-check-input" type="radio" value="accepted" name="radio" id="flexRadioDefault1" {{ !empty($result->review_status ) && $result->review_status == 'accepted'? 'checked' : '' }}>
                         <label class="form-check-label" for="flexRadioDefault1">
                             Accepted
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radio" value="rejected" id="flexRadioDefault2">
+                        <input class="form-check-input" type="radio" name="radio" value="rejected" id="flexRadioDefault2" {{ !empty($result->review_status ) && $result->review_status == 'rejected'? 'checked' : '' }}>
                         <label class="form-check-label" for="flexRadioDefault2">
                             Rejected
                         </label>
