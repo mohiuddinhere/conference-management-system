@@ -292,4 +292,15 @@ class UniversityAdministrationController extends Controller
         
         return redirect('uni-admin/conference/table/submissions/'.$conferenceId->submissions_conference_id);
     }
+
+    public function uniAdminProfile(){
+        $userId = session()->get('user_id');
+        $data = DB::table('users')
+        ->where('users.id', '=', $userId)
+        ->get();
+
+        // dd($data);
+
+        return view('university-administration.pages.uniadmin-profile', ['data' => $data]);
+    }
 }

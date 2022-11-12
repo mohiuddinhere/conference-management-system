@@ -60,6 +60,7 @@ Route::middleware(['isLogin'])->group(function () {
         Route::get('admin/tables/conference', [AdminController::class, 'conferenceTableView']);
         Route::get('admin/tables/author', [AdminController::class, 'authorTableView']);
         Route::get('admin/tables/reviewer', [AdminController::class, 'reviewerTableView']);
+        Route::get('admin/profile', [AdminController::class, 'adminProfile']);
     });
 
 
@@ -73,6 +74,7 @@ Route::middleware(['isLogin'])->group(function () {
         Route::get('author/tables/submission', [AuthorController::class, 'submissionTableView']);
         Route::get('author/submission/update/{id}', [AuthorController::class, 'submissionPaperUpdate']);
         Route::get('author/tables/submission/results', [AuthorController::class, 'submissionResults']);
+        Route::get('author/profile', [AuthorController::class, 'authorProfile']);
     });
 
 
@@ -94,6 +96,7 @@ Route::middleware(['isLogin'])->group(function () {
         Route::post('uni_admin/add-reviewer/{id}', [UniversityAdministrationController::class, 'addReviewerInSubmissionPaper']);
         Route::get('uni_admin/marking-list/{id}', [UniversityAdministrationController::class, 'showMarkingList']);
         Route::post('store-marking/{id}', [UniversityAdministrationController::class, 'storeMarking']);
+        Route::get('uni-admin/profile', [UniversityAdministrationController::class, 'uniAdminProfile']);
     });
 
 
@@ -105,6 +108,7 @@ Route::middleware(['isLogin'])->group(function () {
         Route::get('paper-download/{id}', [ReviewerController::class, 'paperDownload']);
         Route::get('review-submission-paper/{id}', [ReviewerController::class, 'reviewSubmissionPaper']);
         Route::post('reviewer/mark/{submission_id}', [ReviewerController::class, 'reviewMark']);
+        Route::get('reviewer/profile', [ReviewerController::class, 'reviewerProfile']);
     });
     
     

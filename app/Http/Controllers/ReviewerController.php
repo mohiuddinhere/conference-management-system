@@ -98,4 +98,15 @@ class ReviewerController extends Controller
             echo 'You already review this paper.';
         }
     }
+
+    public function reviewerProfile(){
+        $userId = session()->get('user_id');
+        $data = DB::table('users')
+        ->where('users.id', '=', $userId)
+        ->get();
+
+        // dd($data);
+
+        return view('reviewer.pages.reviewer-profile', ['data' => $data]);
+    }
 }

@@ -167,4 +167,15 @@ class AuthorController extends Controller
         // dd($data);
         return view('author.pages.author-paper-result', ['data' => $data]);
     }
+
+    public function authorProfile(){
+        $userId = session()->get('user_id');
+        $data = DB::table('users')
+        ->where('users.id', '=', $userId)
+        ->get();
+
+        // dd($data);
+
+        return view('author.pages.author-profile', ['data' => $data]);
+    }
 }
