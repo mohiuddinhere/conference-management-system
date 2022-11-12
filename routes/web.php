@@ -19,9 +19,9 @@ use App\Http\Controllers\Conference;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('index');
+});
 //Admin
 //Create website admin
 Route::get('error', function () {
