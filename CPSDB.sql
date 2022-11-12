@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 12, 2022 at 11:06 AM
+-- Generation Time: Nov 12, 2022 at 04:47 PM
 -- Server version: 8.0.31-0ubuntu0.22.04.1
 -- PHP Version: 8.1.2-1ubuntu2.8
 
@@ -103,7 +103,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (47, '2022_10_13_190825_create_markings_table', 1),
 (48, '2022_11_07_051730_create_unique_identifiers_table', 1),
 (49, '2022_11_08_173529_create_submission_teams_table', 1),
-(50, '2022_11_10_065923_create_results_table', 1);
+(50, '2022_11_10_065923_create_results_table', 1),
+(52, '2022_11_12_130544_create_traffic_logs_table', 2);
 
 -- --------------------------------------------------------
 
@@ -144,8 +145,7 @@ CREATE TABLE `results` (
 
 INSERT INTO `results` (`id`, `submission_result_id`, `review_status`, `created_at`, `updated_at`) VALUES
 (1, 1, 'accepted', NULL, NULL),
-(2, 2, 'rejected', NULL, NULL),
-(3, 1, 'rejected', NULL, NULL);
+(2, 2, 'rejected', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -269,6 +269,33 @@ INSERT INTO `tracks` (`id`, `name`, `conference_id`, `created_at`, `updated_at`)
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `traffic_logs`
+--
+
+CREATE TABLE `traffic_logs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `traffic_logs`
+--
+
+INSERT INTO `traffic_logs` (`id`, `user_id`, `created_at`) VALUES
+(1, 1, '2022-11-12 14:03:33'),
+(2, 2, '2022-11-12 14:04:49'),
+(3, 6, '2022-11-12 14:05:04'),
+(4, 1, '2022-11-12 14:05:21'),
+(5, 1, '2022-11-12 14:43:27'),
+(6, 1, '2022-11-12 14:45:33'),
+(7, 1, '2022-11-12 14:47:09'),
+(8, 6, '2022-11-12 15:19:20'),
+(9, 1, '2022-11-12 15:19:37');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `unique_identifiers`
 --
 
@@ -290,7 +317,10 @@ INSERT INTO `unique_identifiers` (`id`, `users_uniqueIdentifier_id`, `author_orc
 (3, 8, 4973275262465512, NULL, NULL),
 (4, 9, 8056258908906585, NULL, NULL),
 (5, 10, 7824983813077847, NULL, NULL),
-(6, 11, 1497470825859187, NULL, NULL);
+(6, 11, 1497470825859187, NULL, NULL),
+(7, 16, 1416647825456304, NULL, NULL),
+(8, 17, 8002216104462189, NULL, NULL),
+(9, 18, 7587318191487970, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -369,7 +399,10 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`, `u
 (12, 'Anik Sen', 'aniksen@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'reviewer', '2022-11-11 16:01:06', '2022-11-11 16:01:06'),
 (13, 'Taufique Sayeed', 'taufiquesayeed@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'reviewer', '2022-11-11 16:02:21', '2022-11-11 16:02:21'),
 (14, 'Kingshuk Dhar', 'kingshukdhar@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'reviewer', '2022-11-11 16:03:04', '2022-11-11 16:03:04'),
-(15, 'Sheikh Rukunuddin Osmani', 'osmani@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'reviewer', '2022-11-11 16:03:25', '2022-11-11 16:03:25');
+(15, 'Sheikh Rukunuddin Osmani', 'osmani@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'reviewer', '2022-11-11 16:03:25', '2022-11-11 16:03:25'),
+(16, 'Mohiuddin', 'mohiu@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'author', '2022-11-12 14:45:23', '2022-11-12 14:45:23'),
+(17, 'Roksana Afrin', 'roksanaafrin47@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'author', '2022-11-12 14:46:36', '2022-11-12 14:46:36'),
+(18, 'Basit Karim', 'basitkarim.bk@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'author', '2022-11-12 14:47:02', '2022-11-12 14:47:02');
 
 --
 -- Indexes for dumped tables
@@ -453,6 +486,12 @@ ALTER TABLE `tracks`
   ADD KEY `tracks_conference_id_foreign` (`conference_id`);
 
 --
+-- Indexes for table `traffic_logs`
+--
+ALTER TABLE `traffic_logs`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `unique_identifiers`
 --
 ALTER TABLE `unique_identifiers`
@@ -501,7 +540,7 @@ ALTER TABLE `markings`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -546,10 +585,16 @@ ALTER TABLE `tracks`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `traffic_logs`
+--
+ALTER TABLE `traffic_logs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `unique_identifiers`
 --
 ALTER TABLE `unique_identifiers`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `universities`
@@ -567,7 +612,7 @@ ALTER TABLE `university_admins`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
