@@ -258,9 +258,16 @@ class UniversityAdministrationController extends Controller
         ->select('users.name as reviewer_name', 'markings.result_adequate as result_adequate', 'markings.contribution as contribution', 'markings.literature_review as literature_review', 'markings.review_status as review_status')
         ->get();
 
-        //dd($reviewerName);
+        $result = DB::table('results')->where('submission_result_id', '=', $id)->orderBy('id', 'desc')->first();
 
-        return view('university-administration.pages.marking-list', ['titleNameData' => $titleNameData, 'reviewerName' => $reviewerName]);
+        // dd($result);
+
+        return view('university-administration.pages.marking-list', 
+        [
+            'titleNameData' => $titleNameData, 
+            'reviewerName' => $reviewerName,
+            'result' => $result
+        ]);
     }
 
     public function storeMarking(Request $r, $id){
