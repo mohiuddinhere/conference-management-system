@@ -46,7 +46,7 @@
                         </div>
                         <div class="form-group">
                             <label>Institution</label>
-                            <input type="text" name="univarsity_name" class="form-control" placeholder="Univarsity">
+                            <input type="text" name="univarsity_name" class="form-control" placeholder="University">
                         </div>
                         <div class="form-group">
                             <label>Institution Address</label>
@@ -58,11 +58,11 @@
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" name="password" class="form-control" placeholder="Password">
+                            <input type="password" name="password" class="form-control" placeholder="Password" value="123456">
                         </div>
                         <div class="form-group">
                             <label>Confirm Password</label>
-                            <input type="password" name="confirmPassword" class="form-control" placeholder="Password">
+                            <input type="password" name="confirmPassword" class="form-control" placeholder="Password" value="123456">
                         </div>
 
                         <!-- <div class="checkbox">
@@ -77,11 +77,11 @@
                                 <button type="button" class="btn social twitter btn-flat btn-addon mt-2"><i class="ti-twitter"></i>Register with twitter</button>
                             </div>
                         </div> -->
-                        <div class="register-link m-t-15 text-center">
+                        <div class="register-link mt-3 text-center">
                             <p>Already have account ? <a href="{{ url('login') }}"> Sign in</a></p>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Register</button>
+                        <!-- <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Register</button> -->
 
                     </form>
                 </div>
